@@ -1,0 +1,52 @@
+@import 'sevenColumns';
+
+.calendar {
+    .header-item {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 600;
+      border-right: 2px solid grey;
+      border-bottom: 2px solid grey;
+
+      &.weekend {
+        background-color: lightgrey; 
+      }
+
+      &:first-child {
+        border-left: 2px solid grey;
+      }
+    }
+
+    .calendar-body {
+      background-color: grey;
+    }
+
+    .calendar-date{
+        height: 250px;
+        padding: 0;
+
+        &.week-start .calendar-content {
+          margin-left: 2px;
+        }
+        &.weekend .calendar-content {
+          background-color: lightgrey; 
+        }
+    }
+
+    .calendar-content {
+      background-color: white;
+      height: 248px;
+      margin: 0 2px 2px 0;
+
+      .month-label {
+        font-size: 12px;
+        height: 18px;
+        padding: 5px 0 0 5px;
+      }
+
+      .date-label {
+        font-size: 26px;
+        padding: 0 10px;
+      }
+  }
+}

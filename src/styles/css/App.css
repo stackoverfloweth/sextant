@@ -1,0 +1,48 @@
+.seven-cols .col {
+  max-width: 14.285714285714285714285714285714% !important;
+  flex: none !important; }
+.seven-cols .offset-1 {
+  margin-left: 14.285714285714285714285714285714%; }
+.seven-cols .offset-2 {
+  margin-left: 28.5714285714%; }
+.seven-cols .offset-3 {
+  margin-left: 42.8571428571%; }
+.seven-cols .offset-4 {
+  margin-left: 57.1428571429%; }
+.seven-cols .offset-5 {
+  margin-left: 71.4285714286%; }
+.seven-cols .offset-6 {
+  margin-left: 85.7142857143%; }
+
+.calendar .header-item {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  border-right: 2px solid grey;
+  border-bottom: 2px solid grey; }
+  .calendar .header-item.weekend {
+    background-color: lightgrey; }
+  .calendar .header-item:first-child {
+    border-left: 2px solid grey; }
+.calendar .calendar-body {
+  background-color: grey; }
+.calendar .calendar-date {
+  height: 250px;
+  padding: 0; }
+  .calendar .calendar-date.week-start .calendar-content {
+    margin-left: 2px; }
+  .calendar .calendar-date.weekend .calendar-content {
+    background-color: lightgrey; }
+.calendar .calendar-content {
+  background-color: white;
+  height: 248px;
+  margin: 0 2px 2px 0; }
+  .calendar .calendar-content .month-label {
+    font-size: 12px;
+    height: 18px;
+    padding: 5px 0 0 5px; }
+  .calendar .calendar-content .date-label {
+    font-size: 26px;
+    padding: 0 10px; }
+
+/*# sourceMappingURL=App.css.map */

@@ -1,0 +1,24 @@
+.seven-cols {
+    .col  {
+        max-width: 14.285714285714285714285714285714% !important;
+        flex:none !important;
+    }
+    .offset-1 {
+        margin-left: 14.285714285714285714285714285714%;
+    }
+    .offset-2 {
+        margin-left: 28.5714285714%;
+    }
+    .offset-3 {
+        margin-left: 42.8571428571%;
+    }
+    .offset-4 {
+        margin-left: 57.1428571429%;
+    }
+    .offset-5 {
+        margin-left: 71.4285714286%;
+    }
+    .offset-6 {
+        margin-left: 85.7142857143%;
+    }
+}
