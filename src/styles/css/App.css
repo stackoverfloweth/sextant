@@ -14,35 +14,62 @@
 .seven-cols .offset-6 {
   margin-left: 85.7142857143%; }
 
-.calendar .header-item {
-  text-align: center;
-  font-size: 18px;
-  font-weight: 600;
-  border-right: 2px solid grey;
-  border-bottom: 2px solid grey; }
-  .calendar .header-item.weekend {
-    background-color: lightgrey; }
-  .calendar .header-item:first-child {
-    border-left: 2px solid grey; }
-.calendar .calendar-body {
-  background-color: grey; }
-.calendar .calendar-date {
-  height: 250px;
-  padding: 0; }
-  .calendar .calendar-date.week-start .calendar-content {
-    margin-left: 2px; }
-  .calendar .calendar-date.weekend .calendar-content {
-    background-color: lightgrey; }
-.calendar .calendar-content {
-  background-color: white;
-  height: 248px;
-  margin: 0 2px 2px 0; }
-  .calendar .calendar-content .month-label {
-    font-size: 12px;
-    height: 18px;
-    padding: 5px 0 0 5px; }
-  .calendar .calendar-content .date-label {
-    font-size: 26px;
-    padding: 0 10px; }
+.calendar {
+  margin: 15px; }
+  .calendar .calendar-header {
+    background-color: rgba(255, 255, 255, 0.45); }
+  .calendar .header-card {
+    padding: 0; }
+    .calendar .header-card .header-content {
+      text-align: center;
+      font-size: 18px;
+      font-weight: 500;
+      margin: 1px 1px 1px 0;
+      background-color: rgba(255, 255, 255, 0.75); }
+    .calendar .header-card:first-child .header-content {
+      margin-left: 1px; }
+  .calendar .calendar-body {
+    background-color: rgba(255, 255, 255, 0.45); }
+  .calendar .calendar-card {
+    height: 220px;
+    padding: 0; }
+    .calendar .calendar-card.week-start .calendar-content {
+      margin-left: 1px; }
+    .calendar .calendar-card.weekend .calendar-content {
+      background-color: rgba(255, 255, 255, 0.75); }
+    .calendar .calendar-card .calendar-content {
+      background-color: white;
+      height: 219px;
+      margin: 0 1px 1px 0; }
+      .calendar .calendar-card .calendar-content .month-label {
+        font-size: 12px;
+        height: 18px;
+        padding: 5px 0 0 5px; }
+      .calendar .calendar-card .calendar-content .date-label {
+        font-size: 26px;
+        padding: 0 10px; }
+
+.team {
+  margin-left: -15px;
+  margin-right: -15px;
+  background: rgba(255, 255, 255, 0.75);
+  height: 100vh; }
+  .team .header {
+    font-size: 24px;
+    font-weight: 200; }
+
+body {
+  background-image: url("../../media/ocean-water.jpg");
+  background-size: cover; }
+
+.sextant-app .logo {
+  background-image: url("../../media/sextant.png");
+  background-size: cover;
+  display: inline-block;
+  height: 35px;
+  width: 35px; }
+.sextant-app h1 {
+  display: inline-block;
+  font-weight: 200; }
 
 /*# sourceMappingURL=App.css.map */

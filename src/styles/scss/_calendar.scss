@@ -1,0 +1,61 @@
+$border-color: rgba(255,255,255, 0.45);
+$off-day-color: rgba(255,255,255, 0.75);
+$border-thickness: 1px;
+$card-height: 220px;
+
+.calendar {
+    margin: 15px;
+
+    .calendar-header {
+        background-color: $border-color; 
+    }
+
+    .header-card {
+        padding: 0;
+
+        .header-content {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 500;
+            margin: $border-thickness $border-thickness $border-thickness 0;
+            background-color: $off-day-color;
+        }
+
+        &:first-child .header-content {
+            margin-left: $border-thickness;
+        }
+    }
+
+    .calendar-body {
+      background-color: $border-color;
+    }
+
+    .calendar-card{
+        height: $card-height;
+        padding: 0;
+
+        &.week-start .calendar-content {
+          margin-left: $border-thickness;
+        }
+        &.weekend .calendar-content {
+          background-color: $off-day-color; 
+        }
+
+        .calendar-content {
+            background-color: white;
+            height: ($card-height - $border-thickness);
+            margin: 0 $border-thickness $border-thickness 0;
+      
+            .month-label {
+              font-size: 12px;
+              height: 18px;
+              padding: 5px 0 0 5px;
+            }
+      
+            .date-label {
+              font-size: 26px;
+              padding: 0 10px;
+            }
+        }
+    }
+}

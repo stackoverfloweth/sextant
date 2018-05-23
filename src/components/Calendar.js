@@ -7,7 +7,7 @@ export default class Calendar extends React.Component {
     constructor(props) {
         super(props);
 
-        var duration = moment.duration({ weeks: 2  });
+        var duration = moment.duration({ weeks: 2 });
         var startDate = moment(new Date(2018, 3, 18));
         var endDate = startDate.clone().add(duration);
 
@@ -32,11 +32,11 @@ export default class Calendar extends React.Component {
         var daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         return <div className="row seven-cols calendar-header">
             {daysOfTheWeek.map((day, index) => {
-                var classes = "col header-item";
+                var classes = "header-content";
                 if (index === 0 || index === 6) {
                     classes += " weekend"
                 }
-                return <div className={classes} key={index}>{day}</div>
+                return <div className="header-card col" key={index}><div className={classes}>{day}</div></div>
             })}
         </div>
     }
@@ -50,7 +50,7 @@ export default class Calendar extends React.Component {
         )
     }
     getDateHtml = (date, index) => {
-        var classes = "col calendar-date";
+        var classes = "col calendar-card";
 
         if (index === 0) {
             classes += " offset-" + date.weekday();
@@ -72,9 +72,11 @@ export default class Calendar extends React.Component {
         </div>;
     }
     render() {
-        return <div className="calendar">
-            {this.getCalendarHeader()}
-            {this.getCalendarBody()}
-        </div>;
+        return (
+            <div className="calendar">
+                {this.getCalendarHeader()}
+                {this.getCalendarBody()}
+            </div>
+        );
     }
 }
