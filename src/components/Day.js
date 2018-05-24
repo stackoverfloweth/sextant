@@ -1,5 +1,4 @@
 import React from 'react';
-import moment from 'moment'
 
 export default class Day extends React.Component {
   getMonthName = (date) => {
