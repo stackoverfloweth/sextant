@@ -1,10 +1,8 @@
 import React from 'react';
-
-import Calendar from './components/Calendar'
-import Team from './components/Team'
-import Navbar from './components/Navbar'
-
-import './styles/css/App.css';
+import Calendar from '../containers/Calendar'
+import Team from './Team'
+import Navbar from './Navbar'
+import '../styles/css/App.css';
 
 class App extends React.Component {
   render() {

@@ -1,9 +1,9 @@
 import moment from 'moment'
+import {connect} from 'react-redux'
+import React from 'react'
+import Day from '../components/Day'
 
-import React from 'react';
-import Day from './Day'
-
-export default class Calendar extends React.Component {
+class Calendar extends React.Component {
     constructor(props) {
         super(props);
 
@@ -80,3 +80,11 @@ export default class Calendar extends React.Component {
         );
     }
 }
+
+function mapStateToProps(state) {
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps)(Calendar)
