@@ -11,7 +11,7 @@ class App extends React.Component {
         <Navbar />
         <div className="container-fluid">
           <div className="row">
-            <div className="col-sm-3">
+            <div className="col-sm-3 d-none d-sm-block">
               <Team />
             </div>
             <div className="col-sm-9">

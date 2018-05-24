@@ -83,7 +83,7 @@ class Calendar extends React.Component {
 
 function mapStateToProps(state) {
     return {
-
+        calendar: state.calendar
     }
 }
 
