@@ -1,6 +1,6 @@
 import React from 'react';
 import Calendar from '../containers/Calendar'
-import Team from './Team'
+import Team from '../containers/Team'
 import Navbar from './Navbar'
 import '../styles/css/App.css';
 
