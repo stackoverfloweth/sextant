@@ -61,10 +61,6 @@ class Calendar extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        calendar: state.calendar
-    }
-}
+const mapStateToProps = state => ({ calendar: state.calendar })
 
 export default connect(mapStateToProps)(Calendar)

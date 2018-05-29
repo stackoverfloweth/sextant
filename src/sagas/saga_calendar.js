@@ -6,7 +6,7 @@ function* postEvent(action) {
         // var payload = axios.call();
         const payload = [
             {
-                eventId: Math.floor(Math.random() * 10),
+                eventId: Math.floor(Math.random() * 1000),
                 title: `CIHD-${Math.floor(Math.random() * 10)}${Math.floor(Math.random() * 10)}`,
                 description: "lorem ipsum"
             }

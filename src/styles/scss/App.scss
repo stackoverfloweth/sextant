@@ -2,13 +2,15 @@
 @import 'calendar';
 @import 'team';
 
+$primary: #016b9a;
+
 body {
   background-image: url('../../media/ocean-water.jpg');
   background-size: cover;
 }
 
 .sextant-app {
-  .logo {
+ .logo {
     background-image: url('../../media/sextant.png');
     background-size: cover;
     display: inline-block;
@@ -21,3 +23,5 @@ body {
     font-weight: 200;
   }
 }
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';

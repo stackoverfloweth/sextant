@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import Calendar from './reducer_calendar';
+import calendarActions from './reducer_calendar';
+import teamActions from './reducer_team';
 
 const rootReducer = combineReducers({
-    calendar: Calendar
+    calendar: calendarActions,
+    team: teamActions
 });
 
 export default rootReducer;

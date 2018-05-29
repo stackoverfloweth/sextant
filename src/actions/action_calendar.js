@@ -4,7 +4,6 @@ export const CALENDAR_ADD_EVENT = {
 };
 
 export const addNewEvent = () => ({ type: CALENDAR_ADD_EVENT.REQUEST })
-//export const recievedNewEvent = event => ({type: CALENDAR_ADD_EVENT.RESPONSE, event})
 export const recievedNewEvent = function (payload) {
     return {
         type: CALENDAR_ADD_EVENT.RESPONSE,

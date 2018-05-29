@@ -1,7 +1,7 @@
 import { CALENDAR_ADD_EVENT } from '../actions/action_calendar'
 import moment from 'moment'
 
-export default function (state = buildCalendar(), action) {
+export default function (state = buildDefaultCalendar(), action) {
     switch (action.type) {
         case CALENDAR_ADD_EVENT.RESPONSE:
             return { ...state, events: state.events.concat(action.events) }
@@ -12,7 +12,11 @@ export default function (state = buildCalendar(), action) {
     return state
 }
 
-function buildCalendar(startDate = moment(), duration = moment.duration({ weeks: 2 })) {
+function buildDefaultCalendar() {
+    return buildCalendar(moment(), moment.duration({ weeks: 2 }));
+}
+
+function buildCalendar(startDate, duration) {
     const endDate = startDate.clone().add(duration)
 
     return {

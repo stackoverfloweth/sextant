@@ -8,6 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="sextant-app">
+        <div id="modal-wrapper"></div>
         <Navbar />
         <div className="container-fluid">
           <div className="row">

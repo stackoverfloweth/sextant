@@ -1,25 +1,42 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { addNewEvent } from '../actions/action_calendar'
+import { addNewTeamMember } from '../actions/action_team'
+import Member from '../components/Member'
 
 class Team extends React.Component {
-    onButtonClick = (e) => {
+    openMemberModal = (e) => {
         e.preventDefault();
 
-        this.props.addNewEvent();
+        ReactDOM.render(<Member />, document.querySelector('#modal-wrapper'))
+        //this.props.addNewTeamMember();
     }
-
+    getTeamMembersList = () => {
+        return (
+            <ul className="list-group">
+                <li className="member add-member" onClick={this.openMemberModal}>
+                    <div className="color"></div>
+                    <div className="title">Add Team Member</div>
+                </li>
+                {this.props.team.map(member => this.getMemberHtml(member))}
+            </ul>
+        )
+    }
+    getMemberHtml(member) {
+        return <li className="member" key={member.memberId}>
+            <span className="color" style={{ backgroundColor: member.color }}></span>
+            <span className="title">{member.firstName} {member.lastName}</span>
+        </li>
+    }
     render() {
         return (
-            <div className="team sticky-top">
-                <div className="col header">
-                    Team
+            <div className="team sticky-top row">
+                <div className="col">
+                    <div className="header">
+                        <h3>Team Members</h3>
                     </div>
-                <div className="card-body">
-                    <h5 className="card-title">Special title treatment</h5>
-                    <p className="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="" className="btn btn-primary" onClick={this.onButtonClick}>Go somewhere</a>
+                    {this.getTeamMembersList()}
                 </div>
             </div>
         );
@@ -28,6 +45,6 @@ class Team extends React.Component {
 
 const mapStateToProps = state => ({ team: state.team })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ addNewEvent }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ addNewTeamMember }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Team)
