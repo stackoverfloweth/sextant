@@ -21,6 +21,13 @@ class Team extends React.Component {
     submitEditingMember = () => {
         //this.props.addNewTeamMember();
     }
+    onMemberChange = (property, value) => {
+        this.setState(state => {
+            state.memberCurrentlyBeingEdited[property] = value
+            return state
+        })
+        //this.setState(state => (state.memberCurrentlyBeingEdited[e.target.name] = e.target.value))
+    }
     getTeamMembersList = () => {
         return (
             <ul className="list-group">
@@ -47,7 +54,12 @@ class Team extends React.Component {
                     </div>
                     {this.getTeamMembersList()}
                 </div>
-                {this.state.memberCurrentlyBeingEdited ? <Member onCancel={this.cancelEditingMember} onSubmit={this.submitEditingMember} member={this.state.memberCurrentlyBeingEdited} /> : null}
+                {this.state.memberCurrentlyBeingEdited
+                    ? <Member onCancel={this.cancelEditingMember}
+                        onMemberChange={this.onMemberChange}
+                        onSubmit={this.submitEditingMember}
+                        member={this.state.memberCurrentlyBeingEdited} />
+                    : null}
             </div>
         );
     }
