@@ -1,21 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { addNewTeamMember } from '../actions/action_team'
 import Member from '../components/Member'
 
 class Team extends React.Component {
-    openMemberModal = (e) => {
-        e.preventDefault();
+    constructor(props) {
+        super(props);
 
-        ReactDOM.render(<Member />, document.querySelector('#modal-wrapper'))
+        this.state = {
+            isEditing: false
+        }
+    }
+    beginEditingMember = (member) => {
+        this.setState({ memberCurrentlyBeingEdited: member })
+    }
+    cancelEditingMember = () => {
+        this.setState({ memberCurrentlyBeingEdited: null })
+    }
+    submitEditingMember = () => {
         //this.props.addNewTeamMember();
     }
     getTeamMembersList = () => {
         return (
             <ul className="list-group">
-                <li className="member add-member" onClick={this.openMemberModal}>
+                <li className="member add-member" onClick={() => { this.beginEditingMember({}) }}>
                     <div className="color"></div>
                     <div className="title">Add Team Member</div>
                 </li>
@@ -24,7 +33,7 @@ class Team extends React.Component {
         )
     }
     getMemberHtml(member) {
-        return <li className="member" key={member.memberId}>
+        return <li className="member" key={member.memberId} onClick={() => { this.beginEditingMember(member) }}>
             <span className="color" style={{ backgroundColor: member.color }}></span>
             <span className="title">{member.firstName} {member.lastName}</span>
         </li>
@@ -38,6 +47,7 @@ class Team extends React.Component {
                     </div>
                     {this.getTeamMembersList()}
                 </div>
+                {this.state.memberCurrentlyBeingEdited ? <Member onCancel={this.cancelEditingMember} onSubmit={this.submitEditingMember} member={this.state.memberCurrentlyBeingEdited} /> : null}
             </div>
         );
     }
