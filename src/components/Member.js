@@ -5,7 +5,9 @@ import Modal from 'react-bootstrap4-modal'
 export default class MemberModal extends React.Component {
     onKeyDown = (e) => {
         if (e.keyCode === 27) {
-            this.props.onCancel(e);
+            this.props.onCancel(e)
+        }else if(e.keyCode === 13){
+            this.props.onSubmit(e)
         }
     }
     componentDidMount() {
@@ -42,7 +44,7 @@ export default class MemberModal extends React.Component {
                     <button type="button" className="btn btn-secondary" onClick={this.props.onCancel}>
                         Cancel
                     </button>
-                    <button type="submit" className="btn btn-primary">
+                    <button type="submit" className="btn btn-primary" onClick={this.props.onSubmit}>
                         Submit
                     </button>
                 </div>

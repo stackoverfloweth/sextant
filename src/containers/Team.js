@@ -1,25 +1,37 @@
 import React from 'react';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { addNewTeamMember } from '../actions/action_team'
+import { addNewTeamMember, updateTeamMember } from '../actions/action_team'
 import Member from '../components/Member'
+import cloneDeep from 'lodash/cloneDeep'
 
 class Team extends React.Component {
     constructor(props) {
         super(props);
 
+        this.emptyMember = {
+            memberId: null,
+            firstName: "",
+            lastName: "",
+            color: ""
+        }
         this.state = {
-            isEditing: false
+            memberCurrentlyBeingEdited: null
         }
     }
     beginEditingMember = (member) => {
-        this.setState({ memberCurrentlyBeingEdited: member })
+        this.setState({ memberCurrentlyBeingEdited: cloneDeep(member) })
     }
     cancelEditingMember = () => {
         this.setState({ memberCurrentlyBeingEdited: null })
     }
     submitEditingMember = () => {
-        //this.props.addNewTeamMember();
+        if(this.state.memberCurrentlyBeingEdited.memberId){
+            this.props.updateTeamMember(this.state.memberCurrentlyBeingEdited);
+        }else{
+            this.props.addNewTeamMember(this.state.memberCurrentlyBeingEdited);
+        }
+        this.cancelEditingMember()
     }
     onMemberChange = (property, value) => {
         this.setState(state => {
@@ -31,7 +43,7 @@ class Team extends React.Component {
     getTeamMembersList = () => {
         return (
             <ul className="list-group">
-                <li className="member add-member" onClick={() => { this.beginEditingMember({}) }}>
+                <li className="member add-member" onClick={() => { this.beginEditingMember(this.emptyMember) }}>
                     <div className="color"></div>
                     <div className="title">Add Team Member</div>
                 </li>
@@ -67,6 +79,6 @@ class Team extends React.Component {
 
 const mapStateToProps = state => ({ team: state.team })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ addNewTeamMember }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ addNewTeamMember, updateTeamMember }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Team)
