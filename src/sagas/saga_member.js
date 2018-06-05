@@ -2,7 +2,6 @@ import { put, takeEvery } from 'redux-saga/effects'
 import * as Actions from '../actions/action_member'
 
 function* postTeamMember(action) {
-    console.log("SAGA", action)
     try {
         // var payload = axios.call();
         if (action.type.includes("ADD")) {

@@ -6,8 +6,8 @@ export default function (state = getDefaultState(), action) {
             return state.concat([action.member])
         case MEMBER_UPDATE.RESPONSE:
             const updatedTeam = state.map(item => {
-                if (item.memberId === action.memberId) {
-                    return action
+                if (item.memberId === action.member.memberId) {
+                    return action.member
                 }
                 return item
             })

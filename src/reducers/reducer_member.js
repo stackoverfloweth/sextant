@@ -13,7 +13,7 @@ export default function (state = null, action) {
         case MEMBER_EDIT.CANCEL:
             return null
         case MEMBER_EDIT.COMPLETE:
-            return action.member
+            return null
         default:
             return state
     }

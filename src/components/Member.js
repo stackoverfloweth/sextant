@@ -17,7 +17,10 @@ export default class MemberModal extends React.Component {
         document.removeEventListener("keydown", this.onKeyDown, false);
     }
     onChange = (e) => {
-        this.props.onMemberChange(e.target.name, e.target.value);
+        this.props.setEditingTeamMemberValues(e.target.name, e.target.value)
+    }
+    onSubmit = (e) => {
+        this.props.completeEditingTeamMember(this.props.member)
     }
     render() {
         return ReactDOM.createPortal(
@@ -32,11 +35,13 @@ export default class MemberModal extends React.Component {
                     <form>
                         <div className="form-group">
                             <label htmlFor="firstName">First Name</label>
-                            <input type="text" className="form-control" name="firstName" value={this.props.member.firstName} onChange={this.onChange} />
+                            <input type="text" className="form-control" name="firstName" 
+                                value={this.props.member.firstName} onChange={this.onChange} />
                         </div>
                         <div className="form-group">
                             <label htmlFor="lastName">Last Name</label>
-                            <input type="text" className="form-control" name="lastName" value={this.props.member.lastName} onChange={this.onChange} />
+                            <input type="text" className="form-control" name="lastName" 
+                                value={this.props.member.lastName} onChange={this.onChange} />
                         </div>
                     </form>
                 </div>
@@ -44,7 +49,7 @@ export default class MemberModal extends React.Component {
                     <button type="button" className="btn btn-secondary" onClick={this.props.onCancel}>
                         Cancel
                     </button>
-                    <button type="submit" className="btn btn-primary" onClick={this.props.onSubmit}>
+                    <button type="submit" className="btn btn-primary" onClick={this.onSubmit}>
                         Submit
                     </button>
                 </div>

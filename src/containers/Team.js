@@ -43,8 +43,8 @@ class Team extends React.Component {
                 </div>
                 {this.props.memberCurrentlyBeingEdited
                     ? <Member onCancel={this.props.cancelEditingTeamMember}
-                        onMemberChange={this.props.setEditingTeamMemberValues}
-                        onSubmit={this.props.completeEditingTeamMember}
+                        setEditingTeamMemberValues={this.props.setEditingTeamMemberValues}
+                        completeEditingTeamMember={this.props.completeEditingTeamMember}
                         member={this.props.memberCurrentlyBeingEdited} />
                     : null}
             </div>
