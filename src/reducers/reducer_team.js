@@ -1,13 +1,13 @@
-import { TEAM_ADD_MEMBER, TEAM_UPDATE_MEMBER } from '../actions/action_team'
+import { MEMBER_INSERT, MEMBER_UPDATE } from '../actions/action_member'
 
 export default function (state = getDefaultState(), action) {
     switch (action.type) {
-        case TEAM_ADD_MEMBER.RESPONSE:
+        case MEMBER_INSERT.RESPONSE:
             return state.concat([action.member])
-        case TEAM_UPDATE_MEMBER.RESPONSE:
+        case MEMBER_UPDATE.RESPONSE:
             const updatedTeam = state.map(item => {
-                if (item.memberId === action.member.memberId) {
-                    return { ...item, ...action.member }
+                if (item.memberId === action.memberId) {
+                    return action
                 }
                 return item
             })
@@ -17,7 +17,7 @@ export default function (state = getDefaultState(), action) {
     }
 }
 
-function getDefaultState(){
+function getDefaultState() {
     return [
         {
             memberId: Math.floor(Math.random() * 1000),

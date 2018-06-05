@@ -7,7 +7,7 @@ export default class Navbar extends React.Component {
                 <div className="container-fluid">
                     <a className="navbar-brand" href="">
                         <span className="logo"></span>
-                        <h1 className="p-2">Sextant</h1>
+                        <h1 className="p-1">Sextant</h1>
                     </a>
                     <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                         <span className="navbar-toggler-icon"></span>
@@ -15,7 +15,7 @@ export default class Navbar extends React.Component {
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link" href="">Add Jira Ticket</a>
+                                <a className="nav-link" href="" onClick={this.props.addEvent}>Add Jira Ticket</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="">Settings</a>
