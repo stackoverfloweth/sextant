@@ -49,12 +49,9 @@ class Calendar extends React.Component {
         </div>;
     }
     handleDateClick = (date) => {
-        if (this.appIsWatchingForCalendarInput()) {
+        if (this.props.eventCurrentlyBeingEdited) {
             this.props.editDueDateOnEvent(date)
         }
-    }
-    appIsWatchingForCalendarInput() {
-        return this.props.eventCurrentlyBeingEdited && this.props.eventCurrentlyBeingEdited.watchingForInput === "dueDate"
     }
     render() {
         return (

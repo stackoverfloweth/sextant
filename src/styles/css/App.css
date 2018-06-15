@@ -40,7 +40,8 @@
     .calendar .calendar-card .calendar-content {
       background-color: white;
       height: 219px;
-      margin: 0 1px 1px 0; }
+      margin: 0 1px 1px 0;
+      cursor: pointer; }
       .calendar .calendar-card .calendar-content .month-label {
         font-size: 12px;
         height: 18px;

@@ -7,18 +7,13 @@ export default function (state = null, action) {
             eventId: null,
             jiraTicket: null,
             dueDate: null,
-            member: null
+            assignee: null
         }
     }
 
     switch (action.type) {
         case EVENT_EDIT.BEGIN:
             return action.event || emptyEvent
-        case EVENT_EDIT.WATCHING:
-            return {
-                ...state,
-                watchingForInput: action.target
-            }
         case EVENT_EDIT.JIRA:
             return {
                 ...state,
@@ -28,13 +23,13 @@ export default function (state = null, action) {
                     jiraTicket: action.jiraTicket
                 }
             }
-        case EVENT_EDIT.MEMBER:
+        case EVENT_EDIT.ASSIGNEE:
             return {
                 ...state,
                 watchingForInput: null,
                 event: {
                     ...state.event,
-                    member: action.member
+                    assignee: action.assignee
                 }
             }
         case EVENT_EDIT.DATE:

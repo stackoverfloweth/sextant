@@ -45,6 +45,7 @@ $card-height: 220px;
             background-color: white;
             height: ($card-height - $border-thickness);
             margin: 0 $border-thickness $border-thickness 0;
+            cursor: pointer;
       
             .month-label {
               font-size: 12px;

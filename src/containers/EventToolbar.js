@@ -9,16 +9,13 @@ class EventToolbar extends React.Component {
 
         this.eventProps = {
             jiraTicket: "jiraTicket",
-            member: "member",
+            assignee: "assignee",
             dueDate: "dueDate",
         }
     }
 
     getStepClassName = (target) => {
-        return `event-form-item 
-            ${this.props.eventCurrentlyBeingEdited.event[target] ? "completed" : ""} 
-            ${this.props.eventCurrentlyBeingEdited.watchingForInput === target ? "watching-for-input" : ""}
-        `;
+        return `event-form-item ${this.props.eventCurrentlyBeingEdited.event[target] ? "completed" : ""}`;
     }
     canClickAddEventButton = () => {
         for (var key in this.eventProps) {
@@ -30,29 +27,19 @@ class EventToolbar extends React.Component {
         }
         return true;
     }
-    changeInputWatch = (target) => {
-        if (this.props.eventCurrentlyBeingEdited.watchingForInput === target) {
-            this.props.beginWatchingForInput(null)
-        } else if (this.props.eventCurrentlyBeingEdited.event[target] != null) {
-            this.props.editMemberOnEvent(null)
-            this.props.beginWatchingForInput(target)
-        } else {
-            this.props.beginWatchingForInput(target)
-        }
-    }
     render() {
         return (
             <div className="row event-toolbar d-flex justify-content-between">
                 <div className="event-form">
-                    <button className={this.getStepClassName(this.eventProps.jiraTicket)} onClick={() => this.changeInputWatch(this.eventProps.jiraTicket)}>
+                    <button className={this.getStepClassName(this.eventProps.jiraTicket)} onClick={() => this.props.editJiraTicketOnEvent(null)}>
                         <span>Jira Ticket</span>
                     </button>
                     +
-                    <button className={this.getStepClassName(this.eventProps.member)} onClick={() => this.changeInputWatch(this.eventProps.member)}>
-                        <span>{this.props.eventCurrentlyBeingEdited.event.member ? `${this.props.eventCurrentlyBeingEdited.event.member.firstName} ${this.props.eventCurrentlyBeingEdited.event.member.lastName}` : "Team Member"}</span>
+                    <button className={this.getStepClassName(this.eventProps.assignee)} onClick={() => this.props.editAssigneeOnEvent(null)}>
+                        <span>{this.props.eventCurrentlyBeingEdited.event.assignee ? `${this.props.eventCurrentlyBeingEdited.event.assignee.firstName} ${this.props.eventCurrentlyBeingEdited.event.assignee.lastName}` : "Assignee"}</span>
                     </button>
                     +
-                    <button className={this.getStepClassName(this.eventProps.dueDate)} onClick={() => this.changeInputWatch(this.eventProps.dueDate)}>
+                    <button className={this.getStepClassName(this.eventProps.dueDate)} onClick={() => this.props.editDueDateOnEvent(null)}>
                         <span>{this.props.eventCurrentlyBeingEdited.event.dueDate ? this.props.eventCurrentlyBeingEdited.event.dueDate.format("LL") : "Due Date"}</span>
                     </button>
                     +
@@ -73,7 +60,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    beginWatchingForInput: EventActions.beginWatchingForInput,
+    editJiraTicketOnEvent: EventActions.editJiraTicketOnEvent,
+    editAssigneeOnEvent: EventActions.editAssigneeOnEvent,
+    editDueDateOnEvent: EventActions.editDueDateOnEvent,
     completeEditingEvent: EventActions.completeEditingEvent,
     cancelEditingEvent: EventActions.cancelEditingEvent,
 }, dispatch)

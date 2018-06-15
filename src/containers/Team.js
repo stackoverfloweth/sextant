@@ -7,16 +7,11 @@ import Member from '../components/Member'
 
 class Team extends React.Component {
     handleTeamMemberClick = (member) => {
-        if (!member) {
-            this.props.beginEditingTeamMember()
-        } else if (this.appIsWatchingForMemberInput()) {
-            this.props.editMemberOnEvent(member)
+        if (this.props.eventCurrentlyBeingEdited) {
+            this.props.editAssigneeOnEvent(member)
         } else {
             this.props.beginEditingTeamMember(member)
         }
-    }
-    appIsWatchingForMemberInput() {
-        return this.props.eventCurrentlyBeingEdited && this.props.eventCurrentlyBeingEdited.watchingForInput === "member"
     }
     getTeamMembersList = () => {
         return (
@@ -66,7 +61,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     cancelEditingTeamMember: MemberActions.cancelEditingTeamMember,
     completeEditingTeamMember: MemberActions.completeEditingTeamMember,
     setEditingTeamMemberValues: MemberActions.setEditingTeamMemberValues,
-    editMemberOnEvent: EventActions.editMemberOnEvent,
+    editAssigneeOnEvent: EventActions.editAssigneeOnEvent,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Team)
