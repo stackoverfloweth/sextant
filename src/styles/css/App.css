@@ -86,27 +86,45 @@
     .team .add-member .title {
       color: #aaa; }
 
-.jira-toolbar {
+.event-toolbar {
   background-color: #0475ad;
   color: #f0f0f0;
   padding: 10px; }
-  .jira-toolbar .close {
+  .event-toolbar .close {
     color: white;
     text-shadow: 0 1px 0 black; }
-    .jira-toolbar .close:hover, .jira-toolbar .close:active, .jira-toolbar .close:visited, .jira-toolbar .close:focus {
+    .event-toolbar .close:hover, .event-toolbar .close:active, .event-toolbar .close:visited, .event-toolbar .close:focus {
       color: white; }
-  .jira-toolbar .selected-form .selected-form-item {
+  .event-toolbar .event-form .event-form-item {
     display: inline-block;
     color: rgba(255, 255, 255, 0.5);
+    background: none;
     padding: 0 5px;
     margin: 0 10px;
-    border: 1px dashed rgba(255, 255, 255, 0.5); }
-    .jira-toolbar .selected-form .selected-form-item:hover {
-      cursor: pointer; }
-    .jira-toolbar .selected-form .selected-form-item.action {
+    outline: 1px dashed rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 1px #0475ad;
+    border: none; }
+    .event-toolbar .event-form .event-form-item:hover {
+      cursor: pointer;
+      background: rgba(255, 255, 255, 0.1); }
+    .event-toolbar .event-form .event-form-item.action {
       color: #0475ad;
-      background-color: #f0f0f0; }
-
+      outline-style: solid;
+      outline-color: #f0f0f0;
+      background-color: #f0f0f0;
+      animation: none; }
+    .event-toolbar .event-form .event-form-item:disabled {
+      opacity: 0.5; }
+    .event-toolbar .event-form .event-form-item.watching-for-input {
+      animation: 0.5s border-animation ease infinite; }
+    .event-toolbar .event-form .event-form-item.completed {
+      animation: none;
+      outline: 1px solid white;
+      color: white; }
+@keyframes border-animation {
+  to {
+    outline-color: #0475ad;
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5); } }
 body {
   background-image: url("../../media/ocean-water.jpg");
   background-size: cover; }

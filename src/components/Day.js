@@ -6,7 +6,7 @@ export default class Day extends React.Component {
   }
   render() {
     return (
-      <div className="calendar-content">
+      <div className="calendar-content" onClick={() => this.props.onClick(this.props.date)}>
         <div className="month-label">{this.getMonthName(this.props.date)}</div>
         <span className="date-label">{this.props.date.date()}</span>
       </div>

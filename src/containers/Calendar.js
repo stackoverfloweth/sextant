@@ -1,5 +1,7 @@
-import { connect } from 'react-redux'
 import React from 'react'
+import { connect } from 'react-redux'
+import { bindActionCreators } from "redux"
+import * as EventActions from '../actions/action_event'
 import Day from '../components/Day'
 
 class Calendar extends React.Component {
@@ -43,8 +45,16 @@ class Calendar extends React.Component {
         }
 
         return <div key={date.valueOf()} className={classes}>
-            <Day date={date} />
+            <Day date={date} onClick={this.handleDateClick} />
         </div>;
+    }
+    handleDateClick = (date) => {
+        if (this.appIsWatchingForCalendarInput()) {
+            this.props.editDueDateOnEvent(date)
+        }
+    }
+    appIsWatchingForCalendarInput() {
+        return this.props.eventCurrentlyBeingEdited && this.props.eventCurrentlyBeingEdited.watchingForInput === "dueDate"
     }
     render() {
         return (
@@ -61,6 +71,13 @@ class Calendar extends React.Component {
     }
 }
 
-const mapStateToProps = state => ({ calendar: state.calendar })
+const mapStateToProps = state => ({
+    calendar: state.calendar,
+    eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
+})
 
-export default connect(mapStateToProps)(Calendar)
+const mapDispatchToProps = dispatch => bindActionCreators({
+    editDueDateOnEvent: EventActions.editDueDateOnEvent,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(Calendar)

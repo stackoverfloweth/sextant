@@ -2,23 +2,26 @@ import React from 'react'
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import * as MemberActions from '../actions/action_member'
+import * as EventActions from '../actions/action_event'
 import Member from '../components/Member'
 
 class Team extends React.Component {
-    constructor(props){
-        super(props);
-
-        this.emptyMember = {
-            memberId: null,
-            firstName: "",
-            lastName: "",
-            color: ""
+    handleTeamMemberClick = (member) => {
+        if (!member) {
+            this.props.beginEditingTeamMember()
+        } else if (this.appIsWatchingForMemberInput()) {
+            this.props.editMemberOnEvent(member)
+        } else {
+            this.props.beginEditingTeamMember(member)
         }
+    }
+    appIsWatchingForMemberInput() {
+        return this.props.eventCurrentlyBeingEdited && this.props.eventCurrentlyBeingEdited.watchingForInput === "member"
     }
     getTeamMembersList = () => {
         return (
             <ul className="list-group">
-                <li className="member add-member" onClick={() => { this.props.beginEditingTeamMember(this.emptyMember) }}>
+                <li className="member add-member" onClick={() => { this.handleTeamMemberClick() }}>
                     <div className="color"></div>
                     <div className="title">Add Team Member</div>
                 </li>
@@ -27,7 +30,7 @@ class Team extends React.Component {
         )
     }
     getMemberHtml(member) {
-        return <li className="member" key={member.memberId} onClick={() => { this.props.beginEditingTeamMember(member) }}>
+        return <li className="member" key={member.memberId} onClick={() => { this.handleTeamMemberClick(member) }}>
             <span className="color" style={{ backgroundColor: member.color }}></span>
             <span className="title">{member.firstName} {member.lastName}</span>
         </li>
@@ -54,14 +57,16 @@ class Team extends React.Component {
 
 const mapStateToProps = state => ({
     team: state.team,
-    memberCurrentlyBeingEdited: state.memberCurrentlyBeingEdited
+    eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
+    memberCurrentlyBeingEdited: state.memberCurrentlyBeingEdited,
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ 
+const mapDispatchToProps = dispatch => bindActionCreators({
     beginEditingTeamMember: MemberActions.beginEditingTeamMember,
     cancelEditingTeamMember: MemberActions.cancelEditingTeamMember,
     completeEditingTeamMember: MemberActions.completeEditingTeamMember,
     setEditingTeamMemberValues: MemberActions.setEditingTeamMemberValues,
+    editMemberOnEvent: EventActions.editMemberOnEvent,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Team)
