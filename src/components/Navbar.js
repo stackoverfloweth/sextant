@@ -18,7 +18,7 @@ export default class Navbar extends React.Component {
                                 <a className="nav-link" href="" onClick={this.props.addEvent}>Add Jira Ticket</a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="">Settings</a>
+                                <a className="nav-link" href="" onClick={this.props.openSettings}>Settings</a>
                             </li>
                         </ul>
                     </div>

@@ -3,7 +3,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 import * as MemberActions from '../actions/action_member'
 import * as EventActions from '../actions/action_event'
-import Member from '../components/Member'
+import MemberModal from '../components/MemberModal'
 
 class Team extends React.Component {
     handleTeamMemberClick = (member) => {
@@ -40,7 +40,7 @@ class Team extends React.Component {
                     {this.getTeamMembersList()}
                 </div>
                 {this.props.memberCurrentlyBeingEdited
-                    ? <Member cancelEditingTeamMember={this.props.cancelEditingTeamMember}
+                    ? <MemberModal cancelEditingTeamMember={this.props.cancelEditingTeamMember}
                         setEditingTeamMemberValues={this.props.setEditingTeamMemberValues}
                         completeEditingTeamMember={this.props.completeEditingTeamMember}
                         member={this.props.memberCurrentlyBeingEdited} />

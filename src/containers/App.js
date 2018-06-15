@@ -1,11 +1,17 @@
 import React from 'react';
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
+
 import Calendar from './Calendar'
 import Team from './Team'
-import EventToolbar from '../containers/EventToolbar'
+import EventToolbar from './EventToolbar'
+
 import { beginEditingEvent } from '../actions/action_event'
+import { showSettingsModal, hideSettingsModal } from '../actions/action_setting'
+
 import Navbar from '../components/Navbar'
+import SettingsModal from '../components/SettingsModal'
+
 import '../styles/css/App.css';
 
 class App extends React.Component {
@@ -13,12 +19,16 @@ class App extends React.Component {
     e.preventDefault()
     this.props.beginEditingEvent()
   }
+  openSettingsModal = (e) => {
+    e.preventDefault()
+    this.props.showSettingsModal()
+  }
 
   render() {
     return (
       <div className="sextant-app">
-        <div id="modal-wrapper"></div>
-        <Navbar addEvent={this.openEventToolbar} />
+        <Navbar addEvent={this.openEventToolbar}
+          openSettings={this.openSettingsModal} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 d-none d-sm-block">
@@ -34,6 +44,11 @@ class App extends React.Component {
               <Calendar />
             </div>
           </div>
+          <div id="modal-wrapper">
+            {this.props.settings.showModal
+              ? <SettingsModal close={this.props.hideSettingsModal} />
+              : null}
+          </div>
         </div>
       </div>
     );
@@ -41,12 +56,15 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => ({
+  settings: state.settings,
   team: state.team,
   eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  beginEditingEvent: beginEditingEvent
+  beginEditingEvent: beginEditingEvent,
+  showSettingsModal: showSettingsModal,
+  hideSettingsModal: hideSettingsModal,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

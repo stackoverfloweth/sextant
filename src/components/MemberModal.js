@@ -27,7 +27,7 @@ export default class MemberModal extends React.Component {
     }
     render() {
         return ReactDOM.createPortal(
-            <Modal visible={true} onClickBackdrop={this.onCancel}>
+            <Modal visible={true} onClickBackdrop={this.onCancel} dialogClassName="modal-dialog-centered">
                 <div className="modal-header">
                     <h5 className="modal-title">{this.props.member.memberId ? "Edit Team Member" : "New Team Member"}</h5>
                     <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.onCancel}>
