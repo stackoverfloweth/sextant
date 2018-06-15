@@ -4,7 +4,7 @@ import * as Actions from '../actions/action_member'
 function* postTeamMember(action) {
     try {
         // var payload = axios.call();
-        if (action.type.includes("ADD")) {
+        if (action.member.memberId == null) {
             action.member.memberId = Math.floor(Math.random() * 1000)
             action.member.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
             yield put(Actions.recievedNewTeamMember(action.member))

@@ -23,9 +23,9 @@ class App extends React.Component {
   }
   openEventToolbar = (e) => {
     e.preventDefault();
-    this.setState({ 
+    this.setState({
       eventCurrentlyBeingEdited: this.emptyEvent,
-     })
+    })
   }
   cancelEventEdit = () => {
     this.setState({ eventCurrentlyBeingEdited: null })
@@ -46,10 +46,10 @@ class App extends React.Component {
             </div>
             <div className="col-sm-9">
               {this.state.eventCurrentlyBeingEdited
-                ? <EventToolbar 
-                    onClose={this.cancelEventEdit} 
-                    onSubmit={this.submitEventEdit}
-                  />
+                ? <EventToolbar
+                  onClose={this.cancelEventEdit}
+                  onSubmit={this.submitEventEdit}
+                />
                 : null}
               <Calendar />
             </div>

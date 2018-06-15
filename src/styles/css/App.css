@@ -120,6 +120,14 @@ body {
 .sextant-app h1 {
   display: inline-block;
   font-weight: 200; }
+.sextant-app .overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: black;
+  opacity: 0.5; }
 
 /*!
  * Bootstrap v4.1.0 (https://getbootstrap.com/)
