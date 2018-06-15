@@ -1,5 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects'
-import * as Actions from '../actions/action_member'
+import * as MemberActions from '../actions/action_member'
 
 function* postTeamMember(action) {
     try {
@@ -7,9 +7,9 @@ function* postTeamMember(action) {
         if (action.member.memberId == null) {
             action.member.memberId = Math.floor(Math.random() * 1000)
             action.member.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-            yield put(Actions.recievedNewTeamMember(action.member))
+            yield put(MemberActions.recievedNewTeamMember(action.member))
         } else {
-            yield put(Actions.recievedUpdatedTeamMember(action.member))
+            yield put(MemberActions.recievedUpdatedTeamMember(action.member))
         }
     } catch (exception) {
         console.log(exception);
@@ -17,5 +17,5 @@ function* postTeamMember(action) {
 }
 
 export default [
-    takeEvery(Actions.MEMBER_EDIT.COMPLETE, postTeamMember),
+    takeEvery(MemberActions.MEMBER_EDIT.COMPLETE, postTeamMember),
 ]

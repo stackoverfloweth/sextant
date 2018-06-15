@@ -1,5 +1,5 @@
 import { put, takeEvery } from 'redux-saga/effects'
-import * as Actions from '../actions/action_calendar'
+import * as CalendarActions from '../actions/action_calendar'
 
 function* postEvent(action) {
     try {
@@ -11,12 +11,12 @@ function* postEvent(action) {
                 description: "lorem ipsum"
             }
         ]
-        yield put(Actions.recievedNewEvent(payload))
+        yield put(CalendarActions.recievedNewEvent(payload))
     } catch (exception) {
         console.log(exception);
     }
 }
 
 export default [
-    takeEvery(Actions.CALENDAR_ADD_EVENT.REQUEST, postEvent)
+    takeEvery(CalendarActions.CALENDAR_ADD_EVENT.REQUEST, postEvent)
 ]

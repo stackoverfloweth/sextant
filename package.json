@@ -5,6 +5,7 @@
   "dependencies": {
     "Babel": "0.0.1",
     "ajv": "^6.5.0",
+    "axios": "^0.18.0",
     "bootstrap": "^4.1.0",
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.2",
@@ -19,6 +20,7 @@
     "react-scripts": "1.1.4",
     "redux": "^4.0.0",
     "redux-devtools-extension": "^2.13.2",
+    "redux-form": "^7.4.2",
     "redux-saga": "^0.16.0"
   },
   "scripts": {

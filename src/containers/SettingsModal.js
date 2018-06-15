@@ -1,21 +1,34 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { bindActionCreators } from "redux"
+import { connect } from "react-redux"
+import SettingsForm from './SettingsForm'
+
+import * as SettingActions from '../actions/action_setting'
+
 import Modal from 'react-bootstrap4-modal'
 
-export default class SettingsModal extends React.Component {
+class SettingsModal extends React.Component {
     onKeyDown = (e) => {
         if (e.keyCode === 27) {
             this.onCancel(e)
         }
     }
     componentDidMount() {
-        document.addEventListener("keydown", this.onKeyDown, false);
+        document.addEventListener("keydown", this.onKeyDown, false)
     }
     componentWillUnmount() {
-        document.removeEventListener("keydown", this.onKeyDown, false);
+        document.removeEventListener("keydown", this.onKeyDown, false)
     }
     onCancel = (e) => {
-        this.props.close()
+        this.props.hideSettingsModal()
+    }
+    onChange = (e) => {
+        this.props.updateSettings();
+    }
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.saveSettings();
     }
     render() {
         return ReactDOM.createPortal(
@@ -29,24 +42,7 @@ export default class SettingsModal extends React.Component {
                     </button>
                 </div>
                 <div className="modal-body">
-                    <form>
-                        <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
-                            <input type="text" className="form-control" name="firstName" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
-                            <input type="text" className="form-control" name="firstName" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
-                            <input type="text" className="form-control" name="firstName" />
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="firstName">First Name</label>
-                            <input type="text" className="form-control" name="firstName" />
-                        </div>
-                    </form>
+                    <SettingsForm />
                 </div>
                 <div className="modal-footer">
                     <button type="button" className="btn btn-secondary" onClick={this.onCancel}>
@@ -61,3 +57,13 @@ export default class SettingsModal extends React.Component {
         )
     }
 }
+
+const mapStateToProps = state => ({
+    settings: state.settings,
+})
+
+const mapDispatchToProps = dispatch => bindActionCreators({
+    hideSettingsModal: SettingActions.hideSettingsModal,
+}, dispatch)
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsModal)

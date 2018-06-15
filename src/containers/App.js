@@ -6,15 +6,21 @@ import Calendar from './Calendar'
 import Team from './Team'
 import EventToolbar from './EventToolbar'
 
-import { beginEditingEvent } from '../actions/action_event'
-import { showSettingsModal, hideSettingsModal } from '../actions/action_setting'
+import * as EventActions from '../actions/action_event'
+import * as SettingActions from '../actions/action_setting'
 
 import Navbar from '../components/Navbar'
-import SettingsModal from '../components/SettingsModal'
+import SettingsModal from '../containers/SettingsModal'
 
 import '../styles/css/App.css';
 
 class App extends React.Component {
+  constructor(props){
+    super(props)
+
+    this.props.fetchSettings()
+  }
+
   openEventToolbar = (e) => {
     e.preventDefault()
     this.props.beginEditingEvent()
@@ -46,7 +52,7 @@ class App extends React.Component {
           </div>
           <div id="modal-wrapper">
             {this.props.settings.showModal
-              ? <SettingsModal close={this.props.hideSettingsModal} />
+              ? <SettingsModal />
               : null}
           </div>
         </div>
@@ -62,9 +68,9 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  beginEditingEvent: beginEditingEvent,
-  showSettingsModal: showSettingsModal,
-  hideSettingsModal: hideSettingsModal,
+  beginEditingEvent: EventActions.beginEditingEvent,
+  showSettingsModal: SettingActions.showSettingsModal,
+  fetchSettings: SettingActions.fetchSettings,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

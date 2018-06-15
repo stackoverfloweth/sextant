@@ -1,15 +1,15 @@
 import { put, takeEvery } from 'redux-saga/effects'
-import * as Actions from '../actions/action_team'
+import * as TeamActions from '../actions/action_team'
 
 function* getTeam(action){
-    yield put(Actions.fetchTeam())
+    yield put(TeamActions.fetchTeam())
 }
 
 function* recieveTeam(action){
-    yield put(Actions.recievedTeam(action.team))
+    yield put(TeamActions.recievedTeam(action.team))
 }
 
 export default [
-    takeEvery(Actions.TEAM_FETCH.REQUEST, getTeam),
-    takeEvery(Actions.TEAM_FETCH.REQUEST, recieveTeam),
+    takeEvery(TeamActions.TEAM_FETCH.REQUEST, getTeam),
+    takeEvery(TeamActions.TEAM_FETCH.REQUEST, recieveTeam),
 ]
