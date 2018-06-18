@@ -34,9 +34,6 @@ class Team extends React.Component {
         return (
             <div className="team sticky-top row">
                 <div className="col">
-                    <div className="header">
-                        <h3>Team Members</h3>
-                    </div>
                     {this.getTeamMembersList()}
                 </div>
                 {this.props.memberCurrentlyBeingEdited

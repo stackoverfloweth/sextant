@@ -15,7 +15,7 @@ export default class Navbar extends React.Component {
                     <div className="collapse navbar-collapse">
                         <ul className="navbar-nav">
                             <li className="nav-item">
-                                <a className="nav-link" href="" onClick={this.props.addEvent}>Add Jira Ticket</a>
+                                <a className="nav-link" href="" onClick={this.props.addEvent}>Add to Sprint</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="" onClick={this.props.openSettings}>Settings</a>

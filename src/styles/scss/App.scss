@@ -1,9 +1,9 @@
+@import "variables";
+@import 'sidebar';
 @import 'sevenColumns';
 @import 'calendar';
 @import 'team';
 @import 'eventToolbar';
-
-$primary: #016b9a;
 
 body {
   background-image: url('../../media/ocean-water.jpg');

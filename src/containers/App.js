@@ -10,6 +10,7 @@ import * as EventActions from '../actions/action_event'
 import * as SettingActions from '../actions/action_setting'
 
 import Navbar from '../components/Navbar'
+import Sidebar from '../components/Sidebar'
 import SettingsModal from '../containers/SettingsModal'
 
 import '../styles/css/App.css';
@@ -29,6 +30,18 @@ class App extends React.Component {
     e.preventDefault()
     this.props.showSettingsModal()
   }
+  getSideBarTabs = () => {
+    return [
+      {
+        title: "Members",
+        content: <Team />
+      },
+      {
+        title: "Tickets",
+        content: <div>Tickets Content</div>
+      },
+    ]
+  }
 
   render() {
     return (
@@ -38,7 +51,7 @@ class App extends React.Component {
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 d-none d-sm-block">
-              <Team />
+              <Sidebar  tabs={this.getSideBarTabs()}/>
             </div>
             <div className="col-sm-9">
               {this.props.eventCurrentlyBeingEdited

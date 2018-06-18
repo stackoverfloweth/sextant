@@ -1,5 +1,7 @@
+@import "variables";
+
 .event-toolbar {
-    background-color: #0475ad;
+    background-color: $primary;
     color: #f0f0f0;
     padding: 10px;
 
@@ -20,7 +22,7 @@
             padding: 0 5px;
             margin: 0 10px;
             outline: 1px dashed rgba(255, 255, 255, 0.5);
-            box-shadow: 0 0 0 1px #0475ad;
+            box-shadow: 0 0 0 1px $primary;
             border: none;
 
             &:hover {
@@ -29,7 +31,7 @@
             }
 
             &.action {
-                color: #0475ad;
+                color: $primary;
                 outline-style: solid;
                 outline-color: #f0f0f0;
                 background-color: #f0f0f0;
@@ -53,7 +55,7 @@
 
         @keyframes border-animation {
             to {
-                outline-color: #0475ad;
+                outline-color: $primary;
                 box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
             }
         }
