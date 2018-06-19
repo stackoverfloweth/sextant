@@ -8,6 +8,7 @@ import EventToolbar from './EventToolbar'
 
 import * as EventActions from '../actions/action_event'
 import * as SettingActions from '../actions/action_setting'
+import * as JiraActions from '../actions/action_jira'
 
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
@@ -20,6 +21,7 @@ class App extends React.Component {
     super(props)
 
     this.props.fetchSettings()
+    // this.props.fetchJiraBacklog();
   }
 
   openEventToolbar = (e) => {
@@ -84,6 +86,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   beginEditingEvent: EventActions.beginEditingEvent,
   showSettingsModal: SettingActions.showSettingsModal,
   fetchSettings: SettingActions.fetchSettings,
+  fetchJiraBacklog: JiraActions.fetchJiraBacklog,
+  fetchJiraUsers: JiraActions.fetchJiraUsers
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

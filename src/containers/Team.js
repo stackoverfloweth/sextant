@@ -1,64 +1,60 @@
 import React from 'react'
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import * as MemberActions from '../actions/action_member'
 import * as EventActions from '../actions/action_event'
-import MemberModal from '../components/MemberModal'
+import * as JiraActions from '../actions/action_jira'
 
 class Team extends React.Component {
     handleTeamMemberClick = (member) => {
         if (this.props.eventCurrentlyBeingEdited) {
             this.props.editAssigneeOnEvent(member)
-        } else {
-            this.props.beginEditingTeamMember(member)
         }
+    }
+    fetchUsers = () => {
+        this.props.fetchJiraUsers(this.props.settings);
     }
     getTeamMembersList = () => {
         return (
             <ul className="list-group">
-                <li className="member add-member" onClick={() => { this.handleTeamMemberClick() }}>
-                    <div className="color"></div>
-                    <div className="title">Add Team Member</div>
-                </li>
-                {this.props.team.map(member => this.getMemberHtml(member))}
+                {this.props.users.map(member => this.getMemberHtml(member))}
             </ul>
         )
     }
     getMemberHtml(member) {
-        return <li className="member" key={member.memberId} onClick={() => { this.handleTeamMemberClick(member) }}>
-            <span className="color" style={{ backgroundColor: member.color }}></span>
-            <span className="title">{member.firstName} {member.lastName}</span>
+        return <li className="member" key={member.emailAddress} onClick={() => { this.handleTeamMemberClick(member) }}>
+            <span className="color" style={{ borderColor: '#' + Math.floor(Math.random() * 16777215).toString(16) }}>
+                <img src={member.avatarUrls["48x48"]} alt={member.displayName} />
+            </span>
+            <span className="title">{member.displayName}</span>
         </li>
     }
     render() {
+        if (!this.props.settings.jiraUrl || !this.props.settings.basicToken) {
+            return <div />
+        } else if (!this.props.users) {
+            this.fetchUsers()
+            return <div />
+        } 
+
         return (
             <div className="team sticky-top row">
                 <div className="col">
                     {this.getTeamMembersList()}
                 </div>
-                {this.props.memberCurrentlyBeingEdited
-                    ? <MemberModal cancelEditingTeamMember={this.props.cancelEditingTeamMember}
-                        setEditingTeamMemberValues={this.props.setEditingTeamMemberValues}
-                        completeEditingTeamMember={this.props.completeEditingTeamMember}
-                        member={this.props.memberCurrentlyBeingEdited} />
-                    : null}
             </div>
         );
     }
 }
 
 const mapStateToProps = state => ({
-    team: state.team,
+    users: state.jira.users,
+    settings: state.settings,
     eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
-    memberCurrentlyBeingEdited: state.memberCurrentlyBeingEdited,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    beginEditingTeamMember: MemberActions.beginEditingTeamMember,
-    cancelEditingTeamMember: MemberActions.cancelEditingTeamMember,
-    completeEditingTeamMember: MemberActions.completeEditingTeamMember,
-    setEditingTeamMemberValues: MemberActions.setEditingTeamMemberValues,
     editAssigneeOnEvent: EventActions.editAssigneeOnEvent,
+    fetchJiraUsers: JiraActions.fetchJiraUsers,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Team)

@@ -36,7 +36,7 @@ class EventToolbar extends React.Component {
                     </button>
                     +
                     <button className={this.getStepClassName(this.eventProps.assignee)} onClick={() => this.props.editAssigneeOnEvent(null)}>
-                        <span>{this.props.eventCurrentlyBeingEdited.event.assignee ? `${this.props.eventCurrentlyBeingEdited.event.assignee.firstName} ${this.props.eventCurrentlyBeingEdited.event.assignee.lastName}` : "Assignee"}</span>
+                        <span>{this.props.eventCurrentlyBeingEdited.event.assignee ? this.props.eventCurrentlyBeingEdited.event.assignee.displayName : "Assignee"}</span>
                     </button>
                     +
                     <button className={this.getStepClassName(this.eventProps.dueDate)} onClick={() => this.props.editDueDateOnEvent(null)}>

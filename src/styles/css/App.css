@@ -2,7 +2,8 @@
   margin-left: -15px;
   margin-right: -15px;
   background: rgba(255, 255, 255, 0.75);
-  height: 100vh; }
+  height: 100vh;
+  overflow-y: auto; }
   .sidebar .nav-pills {
     padding: 10px 0; }
   .sidebar .nav-link {
@@ -62,14 +63,6 @@
         font-size: 26px;
         padding: 0 10px; }
 
-.team .header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin: 10px 0 5px; }
-  .team .header h3 {
-    font-size: 24px;
-    font-weight: 600; }
 .team .member {
   display: flex;
   align-items: center;
@@ -77,12 +70,16 @@
   margin-bottom: 4px;
   cursor: pointer; }
   .team .member .color {
-    height: 30px;
-    width: 30px;
+    height: 36px;
+    width: 36px;
     margin: 5px;
-    font-size: 24px;
     font-weight: bold;
-    border-radius: 100%; }
+    border-radius: 100%;
+    border: 3px solid pink; }
+    .team .member .color img {
+      height: 30px;
+      width: 30px;
+      border-radius: 100%; }
   .team .member .title {
     font-size: 20px; }
   .team .member:hover {

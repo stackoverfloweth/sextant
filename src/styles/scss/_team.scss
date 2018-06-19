@@ -1,16 +1,4 @@
-.team {
-    .header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin: 10px 0 5px;
-
-        h3 {
-            font-size: 24px;
-            font-weight: 600;
-        }
-    }
-    
+.team {    
     .member{
         display: flex;
         align-items: center;
@@ -19,12 +7,17 @@
         cursor: pointer;
 
         .color {
-            height: 30px;
-            width: 30px;
+            height: 36px;
+            width: 36px;
             margin: 5px;
-            font-size: 24px;
             font-weight: bold;
             border-radius: 100%;
+            border: 3px solid pink;
+            img {
+                height: 30px;
+                width: 30px;
+                border-radius: 100%;
+            }
         }
 
         .title {
