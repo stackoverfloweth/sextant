@@ -5,7 +5,7 @@ import * as JiraActions from '../actions/action_jira'
 function* fetchJiraBacklog(action) {
     try {
         var {data} = yield call(JiraApi.fetchBacklog, action.settings)
-        yield put(JiraActions.recievedJiraBacklog(data))
+        yield put(JiraActions.recievedJiraBacklog(data.issues))
     } catch (exception) {
         console.log(exception);
     }

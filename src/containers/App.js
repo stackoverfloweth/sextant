@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 
 import Calendar from './Calendar'
 import Team from './Team'
+import Backlog from './Backlog'
 import EventToolbar from './EventToolbar'
 
 import * as EventActions from '../actions/action_event'
@@ -21,7 +22,6 @@ class App extends React.Component {
     super(props)
 
     this.props.fetchSettings()
-    // this.props.fetchJiraBacklog();
   }
 
   openEventToolbar = (e) => {
@@ -39,8 +39,8 @@ class App extends React.Component {
         content: <Team />
       },
       {
-        title: "Tickets",
-        content: <div>Tickets Content</div>
+        title: "Backlog",
+        content: <Backlog />
       },
     ]
   }

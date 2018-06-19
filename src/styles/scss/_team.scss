@@ -28,17 +28,4 @@
             background-color: #f8f9fa;
         }
     }
-
-    .add-member{
-        $addMemberGrey: #aaa;
-        border: 1px dashed $addMemberGrey;
-
-        .color {
-            background: $addMemberGrey;
-        }
-
-        .title {
-            color: $addMemberGrey;
-        }
-    }
 }

@@ -84,12 +84,6 @@
     font-size: 20px; }
   .team .member:hover {
     background-color: #f8f9fa; }
-.team .add-member {
-  border: 1px dashed #aaa; }
-  .team .add-member .color {
-    background: #aaa; }
-  .team .add-member .title {
-    color: #aaa; }
 
 .event-toolbar {
   background-color: #0475ad;
