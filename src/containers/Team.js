@@ -1,6 +1,9 @@
 import React from 'react'
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
+
+import ReactLoading from 'react-loading'
+
 import * as EventActions from '../actions/action_event'
 import * as JiraActions from '../actions/action_jira'
 
@@ -28,12 +31,18 @@ class Team extends React.Component {
             <span className="title">{member.displayName}</span>
         </li>
     }
+    getLoadingElement() {
+        return <div className="d-flex justify-content-center p-5">
+            <ReactLoading type="cubes" color="#fff" height={20} width={50}/>
+        </div> 
+        
+    }
     render() {
         if (!this.props.settings.jiraUrl || !this.props.settings.basicToken) {
-            return <div />
+            return this.getLoadingElement()
         } else if (!this.props.users) {
             this.fetchUsers()
-            return <div />
+            return this.getLoadingElement()
         } 
 
         return (

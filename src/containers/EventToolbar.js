@@ -32,7 +32,7 @@ class EventToolbar extends React.Component {
             <div className="row event-toolbar d-flex justify-content-between">
                 <div className="event-form">
                     <button className={this.getStepClassName(this.eventProps.jiraTicket)} onClick={() => this.props.editJiraTicketOnEvent(null)}>
-                    <span>{this.props.eventCurrentlyBeingEdited.event.jiraTicket ? this.props.eventCurrentlyBeingEdited.event.jiraTicket.key : "Jira Ticket"}</span>
+                        <span>{this.props.eventCurrentlyBeingEdited.event.jiraTicket ? this.props.eventCurrentlyBeingEdited.event.jiraTicket.key : "Jira Ticket"}</span>
                     </button>
                     +
                     <button className={this.getStepClassName(this.eventProps.assignee)} onClick={() => this.props.editAssigneeOnEvent(null)}>
