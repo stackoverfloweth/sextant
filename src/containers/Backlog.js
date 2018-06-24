@@ -43,7 +43,7 @@ class Backlog extends React.Component {
             return "#ea4646";
             case "Medium":
             return "#e68941";
-            case "Low":
+            default:
             return "#2b8736";
         }
     }

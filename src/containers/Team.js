@@ -24,18 +24,26 @@ class Team extends React.Component {
         )
     }
     getMemberHtml(member) {
-        return <li className="member" key={member.emailAddress} onClick={() => { this.handleTeamMemberClick(member) }}>
-            <span className="color" style={{ borderColor: '#' + Math.floor(Math.random() * 16777215).toString(16) }}>
-                <img src={member.avatarUrls["48x48"]} alt={member.displayName} />
-            </span>
-            <span className="title">{member.displayName}</span>
+        return <li className="member" key={member.emailAddress} style={{ borderColor: '#' + Math.floor(Math.random() * 16777215).toString(16) }}
+            onClick={() => { this.handleTeamMemberClick(member) }} >
+            <img src={member.avatarUrls["48x48"]} alt={member.displayName} />
+            <div className="content">
+                <div className="title">{member.displayName}</div>
+                <div className="sub-content">
+                    <span>Status: </span>
+                    <span className={`active-indicator ${member.active ? "active" : "inactive"}`}></span>{member.active ? "Active" : "Inactive"}
+                </div>
+                <div className="sub-content">
+                    <span>Next Available:</span><u>June 5th</u>
+                </div>
+            </div>
         </li>
     }
     getLoadingElement() {
         return <div className="d-flex justify-content-center p-5">
-            <ReactLoading type="cubes" color="#fff" height={20} width={50}/>
-        </div> 
-        
+            <ReactLoading type="cubes" color="#fff" height={20} width={50} />
+        </div>
+
     }
     render() {
         if (!this.props.settings.jiraUrl || !this.props.settings.basicToken) {
@@ -43,7 +51,7 @@ class Team extends React.Component {
         } else if (!this.props.users) {
             this.fetchUsers()
             return this.getLoadingElement()
-        } 
+        }
 
         return (
             <div className="team sticky-top row">

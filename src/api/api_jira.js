@@ -1,11 +1,11 @@
 import axios from 'axios'
 
 export const fetchBacklog = (settings) => {
-    const url = `https://${settings.jiraUrl}/rest/api/latest/search?filter=12125`
+    const url = `https://${settings.jiraUrl}/rest/api/2/search?jql=filter=12125`
     return axios.get(url, { headers: { "Authorization": `Basic ${settings.basicToken}` } })
 }
 
 export const fetchUsers = (settings) => {
-    const url = `https://${settings.jiraUrl}/rest/api/2/group?groupname=Developers&expand=users`
+    const url = `https://${settings.jiraUrl}/rest/api/2/group?groupname=Genesys&expand=users`
     return axios.get(url, { headers: { "Authorization": `Basic ${settings.basicToken}` } })
 }
