@@ -70,6 +70,7 @@ class Calendar extends React.Component {
 
 const mapStateToProps = state => ({
     calendar: state.calendar,
+    sprint: state.jira.sprint,
     eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
 })
 

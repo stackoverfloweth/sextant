@@ -1,4 +1,4 @@
-import { JIRA_BACKLOG, JIRA_USERS } from '../actions/action_jira'
+import { JIRA_BACKLOG, JIRA_USERS, JIRA_SPRINT } from '../actions/action_jira'
 
 export default function (state = {}, action) {
 
@@ -7,6 +7,11 @@ export default function (state = {}, action) {
         return {
             ...state,
             backlog: action.backlog
+        }
+        case JIRA_SPRINT.RESPONSE:
+        return {
+            ...state,
+            sprint: action.sprint
         }
         case JIRA_USERS.RESPONSE:
         return {
