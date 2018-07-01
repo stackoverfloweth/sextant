@@ -1,10 +1,7 @@
-import { CALENDAR_ADD_EVENT } from '../actions/action_calendar'
 import moment from 'moment'
 
 export default function (state = buildDefaultCalendar(), action) {
     switch (action.type) {
-        case CALENDAR_ADD_EVENT.RESPONSE:
-            return { ...state, events: state.events.concat(action.events) }
         default:
             break
     }
@@ -13,7 +10,7 @@ export default function (state = buildDefaultCalendar(), action) {
 }
 
 function buildDefaultCalendar() {
-    return buildCalendar(moment(), moment.duration({ weeks: 2 }));
+    return buildCalendar(moment('2018-06-27'), moment.duration({ weeks: 2 }));
 }
 
 function buildCalendar(startDate, duration) {
@@ -24,7 +21,6 @@ function buildCalendar(startDate, duration) {
         endDate: endDate,
         duration: duration,
         dates: getDates(startDate, endDate),
-        events: [],
     }
 }
 

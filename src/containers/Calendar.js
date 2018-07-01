@@ -1,7 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from "redux"
+import * as _ from 'lodash'
+
 import * as EventActions from '../actions/action_event'
+
 import Day from '../components/Day'
 
 class Calendar extends React.Component {
@@ -26,6 +29,11 @@ class Calendar extends React.Component {
             </div>
         )
     }
+    getEventsForDay(date) {
+        return this.props.sprint.map(issues => {
+            return _.find(issues, x => date.isSameOrBefore(x.fields.duedate, 'day'))
+        })
+    }
     getDateHtml = (date, index) => {
         var classes = "col calendar-card";
 
@@ -45,7 +53,7 @@ class Calendar extends React.Component {
         }
 
         return <div key={date.valueOf()} className={classes}>
-            <Day date={date} onClick={this.handleDateClick} />
+            <Day date={date} onClick={this.handleDateClick} events={this.getEventsForDay(date)} />
         </div>;
     }
     handleDateClick = (date) => {
@@ -58,11 +66,6 @@ class Calendar extends React.Component {
             <div className="calendar">
                 {this.getCalendarHeader()}
                 {this.getCalendarBody()}
-                {this.props.calendar.events.map((event) => {
-                    return (
-                        <div key={event.eventId}>{event.title}</div>
-                    )
-                })}
             </div>
         );
     }
