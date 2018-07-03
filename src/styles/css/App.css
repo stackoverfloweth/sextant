@@ -53,8 +53,7 @@
     .calendar .calendar-card .calendar-content {
       background-color: white;
       height: 219px;
-      margin: 0 1px 1px 0;
-      cursor: pointer; }
+      margin: 0 1px 1px 0; }
       .calendar .calendar-card .calendar-content .month-label {
         font-size: 12px;
         height: 18px;
@@ -62,6 +61,23 @@
       .calendar .calendar-card .calendar-content .date-label {
         font-size: 26px;
         padding: 0 10px; }
+      .calendar .calendar-card .calendar-content div[class^="issue-"] {
+        padding: 0 5px;
+        margin-bottom: 5px;
+        height: 18px;
+        font-size: 12px;
+        filter: brightness(90%);
+        cursor: pointer; }
+        .calendar .calendar-card .calendar-content div[class^="issue-"].start {
+          margin-left: 2px;
+          border-top-left-radius: 10px;
+          border-bottom-left-radius: 10px; }
+        .calendar .calendar-card .calendar-content div[class^="issue-"].end {
+          margin-right: 2px;
+          border-top-right-radius: 10px;
+          border-bottom-right-radius: 10px; }
+        .calendar .calendar-card .calendar-content div[class^="issue-"].hovering {
+          filter: brightness(100%); }
 
 .team .member {
   display: flex;
