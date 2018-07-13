@@ -26,6 +26,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-form": "^7.4.2",
     "redux-saga": "^0.16.0",
+    "sass-convert": "^0.5.2",
     "sass-loader": "^7.0.3"
   },
   "scripts": {

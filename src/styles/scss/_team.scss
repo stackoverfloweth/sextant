@@ -1,4 +1,11 @@
 .team {
+    overflow-y: auto; 
+    height: calc(100% - 60px);
+    
+    @media (max-width: 880px) {
+        height: calc(100% - 100px);
+    }
+
     .member {
         display: flex;
         border-top-right-radius: 4px;

@@ -2,10 +2,11 @@
   margin-left: -15px;
   margin-right: -15px;
   background: rgba(255, 255, 255, 0.75);
-  height: 100vh;
-  overflow-y: auto; }
+  height: 100vh; }
   .sidebar .nav-pills {
     padding: 10px 0; }
+  .sidebar > .col {
+    height: 100%; }
   .sidebar .nav-link {
     cursor: pointer; }
     .sidebar .nav-link.active:hover {
@@ -85,76 +86,88 @@
         .calendar .calendar-card .calendar-content div[class^="issue-"].hovering {
           filter: brightness(100%); }
 
-.team .member {
-  display: flex;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  margin-bottom: 15px;
-  padding: 5px;
-  cursor: pointer;
-  border-left: 3px solid transparent; }
-  .team .member img {
-    display: inline-block;
-    align-self: center;
-    -webkit-filter: grayscale(100%);
-    filter: grayscale(100%);
-    border-radius: 4px;
-    margin: 0 5px 0 3px;
-    height: 40px;
-    width: 40px; }
-  .team .member .content {
-    display: inline-block; }
-    .team .member .content .title {
-      height: 20px;
-      font-size: 14px;
-      font-weight: bold;
-      margin-bottom: 1px; }
-    .team .member .content .sub-content {
-      display: flex;
-      align-items: center;
-      color: #4c4c4c;
-      font-size: 12px;
-      height: 16px; }
-      .team .member .content .sub-content span {
-        font-weight: bold;
-        padding-right: 2px; }
-      .team .member .content .sub-content .active-indicator {
-        display: inline-block;
-        height: 5px;
-        width: 5px;
-        border-radius: 100%;
-        margin: 5px; }
-        .team .member .content .sub-content .active-indicator.active {
-          background-color: green; }
-        .team .member .content .sub-content .active-indicator.inactive {
-          background-color: red; }
-  .team .member:hover {
-    background-color: #f8f9fa; }
-    .team .member:hover img {
-      -webkit-filter: none;
-      filter: none; }
-
-.backlog .backlog-ticket {
-  margin-bottom: 15px;
-  padding: 5px;
-  padding-left: 8px;
-  border-left: 3px solid #0475ad;
-  border-top-right-radius: 4px;
-  border-bottom-right-radius: 4px;
-  font-size: 12px;
-  cursor: pointer; }
-  .backlog .backlog-ticket:hover {
-    background-color: #f8f9fa; }
-  .backlog .backlog-ticket .title {
+.team {
+  overflow-y: auto;
+  height: calc(100% - 60px); }
+  @media (max-width: 880px) {
+    .team {
+      height: calc(100% - 100px); } }
+  .team .member {
     display: flex;
-    vertical-align: middle;
-    font-size: 14px;
-    height: 14px;
-    line-height: 14px; }
-  .backlog .backlog-ticket .summary {
-    margin: 3px 0; }
-  .backlog .backlog-ticket span:not(.html-entity) {
-    font-weight: bold; }
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    margin-bottom: 15px;
+    padding: 5px;
+    cursor: pointer;
+    border-left: 3px solid transparent; }
+    .team .member img {
+      display: inline-block;
+      align-self: center;
+      -webkit-filter: grayscale(100%);
+      filter: grayscale(100%);
+      border-radius: 4px;
+      margin: 0 5px 0 3px;
+      height: 40px;
+      width: 40px; }
+    .team .member .content {
+      display: inline-block; }
+      .team .member .content .title {
+        height: 20px;
+        font-size: 14px;
+        font-weight: bold;
+        margin-bottom: 1px; }
+      .team .member .content .sub-content {
+        display: flex;
+        align-items: center;
+        color: #4c4c4c;
+        font-size: 12px;
+        height: 16px; }
+        .team .member .content .sub-content span {
+          font-weight: bold;
+          padding-right: 2px; }
+        .team .member .content .sub-content .active-indicator {
+          display: inline-block;
+          height: 5px;
+          width: 5px;
+          border-radius: 100%;
+          margin: 5px; }
+          .team .member .content .sub-content .active-indicator.active {
+            background-color: green; }
+          .team .member .content .sub-content .active-indicator.inactive {
+            background-color: red; }
+    .team .member:hover {
+      background-color: #f8f9fa; }
+      .team .member:hover img {
+        -webkit-filter: none;
+        filter: none; }
+
+.backlog {
+  overflow-y: auto;
+  height: calc(100% - 60px); }
+  @media (max-width: 880px) {
+    .backlog {
+      height: calc(100% - 100px); } }
+  .backlog .backlog-ticket {
+    margin-bottom: 15px;
+    padding: 5px;
+    padding-left: 8px;
+    border-left: 3px solid #0475ad;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    font-size: 12px;
+    cursor: pointer; }
+    .backlog .backlog-ticket:hover {
+      background-color: #f8f9fa; }
+    .backlog .backlog-ticket .title {
+      display: flex;
+      vertical-align: middle;
+      font-size: 14px;
+      height: 14px;
+      line-height: 14px; }
+    .backlog .backlog-ticket .summary {
+      margin: 3px 0; }
+    .backlog .backlog-ticket span:not(.html-entity) {
+      font-weight: bold; }
 
 .event-toolbar {
   background-color: #0475ad;
