@@ -9,6 +9,7 @@ export const EVENT_EDIT = {
 
 export const EVENT_VIEW = {
     BEGIN: 'EVENT_VIEW_BEGIN',
+    RECEIVED: 'EVENT_VIEW_RECEIVED',
     COMPLETE: 'EVENT_VIEW_COMPLETE',
 }
 
@@ -19,5 +20,6 @@ export const editDueDateOnToolbarEvent = payload => ({ type: EVENT_EDIT.DATE, du
 export const completeEditingToolbarEvent = payload => ({ type: EVENT_EDIT.COMPLETE, event: payload })
 export const cancelEditingToolbarEvent = () => ({ type: EVENT_EDIT.CANCEL })
 
-export const viewEvent = payload => ({ type: EVENT_VIEW.BEGIN, event: payload })
+export const viewEvent = (settings, event) => ({ type: EVENT_VIEW.BEGIN, settings, event })
+export const recievedEvent = payload => ({ type: EVENT_VIEW.RECEIVED, event: payload })
 export const closeEvent = () => ({ type: EVENT_VIEW.COMPLETE })

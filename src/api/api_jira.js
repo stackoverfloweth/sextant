@@ -14,3 +14,8 @@ export const fetchUsers = (settings) => {
     const url = `https://${settings.jiraUrl}/rest/api/2/group?groupname=${settings.groupName}&expand=users`
     return axios.get(url, { headers: { "Authorization": `Basic ${settings.basicToken}` } })
 }
+
+export const fetchIssue = (settings, issueKey) => {
+    const url = `https://${settings.jiraUrl}/rest/api/2/issue/${issueKey}`
+    return axios.get(url, { headers: { "Authorization": `Basic ${settings.basicToken}` } })
+}

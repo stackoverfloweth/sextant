@@ -13,7 +13,7 @@ class Backlog extends React.Component {
         if (this.props.toolbarEvent) {
             this.props.editJiraTicketOnToolbarEvent(ticket)
         } else {
-            this.props.viewEvent(ticket)
+            this.props.viewEvent(this.props.settings, ticket)
         }
     }
     fetchBacklog = () => {

@@ -1,4 +1,5 @@
 import { EVENT_EDIT, EVENT_VIEW } from '../actions/action_event'
+import { Ticket } from '../entities/ticket'
 
 export default function (state = {
     toolbarEvent: null
@@ -51,7 +52,18 @@ export default function (state = {
         case EVENT_VIEW.BEGIN:
             return {
                 ...state,
-                openEvent: action.event
+                openEvent: {
+                    isLoading: true,
+                    ...action.event
+                }
+            }
+        case EVENT_VIEW.RECEIVED:
+            return {
+                ...state,
+                openEvent: {
+                    isLoading: false,
+                    ...new Ticket(action.event)
+                }
             }
         case EVENT_VIEW.COMPLETE:
             return {
