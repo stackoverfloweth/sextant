@@ -1,0 +1,26 @@
+.dev-bucket{
+    height: 30vh;
+    color: white;
+    border: 5px solid rgba(255, 255, 255, 0.616);
+    border-radius: 0 0 2vh 2vh;
+    border-top: none;
+    margin: 10px;
+    padding: 0 !important;
+    vertical-align: bottom;
+    overflow: hidden;
+}
+.bucket-content{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: 0;
+}
+.bucket-item {
+    background-color: hotpink;
+    margin-top: 2px;
+    height: 20%;
+}
+
+// .bucket-item:last-child {
+//     border-radius: 0 0 1vh 1vh;
+// }

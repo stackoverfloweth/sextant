@@ -14,6 +14,7 @@ import * as JiraActions from '../actions/action_jira'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import SettingsModal from '../containers/SettingsModal'
+import BucketView from '../containers/BucketView'
 
 import '../styles/css/App.css';
 
@@ -63,7 +64,7 @@ class App extends React.Component {
                   onSubmit={this.submitEventEdit}
                 />
                 : null}
-              <Calendar />
+              <BucketView />
             </div>
           </div>
           <div id="modal-wrapper">
