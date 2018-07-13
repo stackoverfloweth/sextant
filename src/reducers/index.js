@@ -9,7 +9,7 @@ const rootReducer = combineReducers({
     form: formReducer,
     calendar: calendarActions,
     settings: settingActions,
-    eventCurrentlyBeingEdited: eventActions,
+    event: eventActions,
     jira: jiraActions,
 });
 

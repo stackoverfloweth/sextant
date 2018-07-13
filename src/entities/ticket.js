@@ -4,6 +4,7 @@ export class Ticket {
     status = ''
     priority = null
     summary = ''
+    description = ''
     assignee = null
     creator = null
     storyPoints = -1
@@ -12,6 +13,7 @@ export class Ticket {
         this.id = ticketData.id
         this.key = ticketData.key
         this.summary = ticketData.fields.summary
+        this.description = ticketData.fields.description
         this.status = ticketData.fields.status.name
         this.priority = ticketData.fields.priority
         if (ticketData.fields.assignee) {
