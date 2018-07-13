@@ -15,12 +15,12 @@ class EventToolbar extends React.Component {
     }
 
     getStepClassName = (target) => {
-        return `event-form-item ${this.props.eventCurrentlyBeingEdited.event[target] ? "completed" : ""}`;
+        return `event-form-item ${this.props.toolbarEvent[target] ? "completed" : ""}`;
     }
     canClickAddEventButton = () => {
         for (var key in this.eventProps) {
-            if (this.props.eventCurrentlyBeingEdited.event.hasOwnProperty(key)) {
-                if (this.props.eventCurrentlyBeingEdited.event[key] == null) {
+            if (this.props.toolbarEvent.hasOwnProperty(key)) {
+                if (this.props.toolbarEvent[key] == null) {
                     return false;
                 }
             }
@@ -31,16 +31,16 @@ class EventToolbar extends React.Component {
         return (
             <div className="row event-toolbar d-flex justify-content-between">
                 <div className="event-form">
-                    <button className={this.getStepClassName(this.eventProps.jiraTicket)} onClick={() => this.props.editJiraTicketOnEvent(null)}>
-                        <span>{this.props.eventCurrentlyBeingEdited.event.jiraTicket ? this.props.eventCurrentlyBeingEdited.event.jiraTicket.key : "Jira Ticket"}</span>
+                    <button className={this.getStepClassName(this.eventProps.jiraTicket)} onClick={() => this.props.editJiraTicketOnToolbarEvent(null)}>
+                        <span>{this.props.toolbarEvent.jiraTicket ? this.props.toolbarEvent.jiraTicket.key : "Jira Ticket"}</span>
                     </button>
                     +
-                    <button className={this.getStepClassName(this.eventProps.assignee)} onClick={() => this.props.editAssigneeOnEvent(null)}>
-                        <span>{this.props.eventCurrentlyBeingEdited.event.assignee ? this.props.eventCurrentlyBeingEdited.event.assignee.displayName : "Assignee"}</span>
+                    <button className={this.getStepClassName(this.eventProps.assignee)} onClick={() => this.props.editAssigneeOnToolbarEvent(null)}>
+                        <span>{this.props.toolbarEvent.assignee ? this.props.toolbarEvent.assignee.displayName : "Assignee"}</span>
                     </button>
                     +
-                    <button className={this.getStepClassName(this.eventProps.dueDate)} onClick={() => this.props.editDueDateOnEvent(null)}>
-                        <span>{this.props.eventCurrentlyBeingEdited.event.dueDate ? this.props.eventCurrentlyBeingEdited.event.dueDate.format("LL") : "Due Date"}</span>
+                    <button className={this.getStepClassName(this.eventProps.dueDate)} onClick={() => this.props.editDueDateOnToolbarEvent(null)}>
+                        <span>{this.props.toolbarEvent.dueDate ? this.props.toolbarEvent.dueDate.format("LL") : "Due Date"}</span>
                     </button>
                     +
                     <button className="event-form-item action" onClick={this.props.onSubmit} disabled={!this.canClickAddEventButton()}>
@@ -56,15 +56,15 @@ class EventToolbar extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
+    toolbarEvent: state.event.toolbarEvent,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    editJiraTicketOnEvent: EventActions.editJiraTicketOnEvent,
-    editAssigneeOnEvent: EventActions.editAssigneeOnEvent,
-    editDueDateOnEvent: EventActions.editDueDateOnEvent,
-    completeEditingEvent: EventActions.completeEditingEvent,
-    cancelEditingEvent: EventActions.cancelEditingEvent,
+    editJiraTicketOnToolbarEvent: EventActions.editJiraTicketOnToolbarEvent,
+    editAssigneeOnToolbarEvent: EventActions.editAssigneeOnToolbarEvent,
+    editDueDateOnToolbarEvent: EventActions.editDueDateOnToolbarEvent,
+    completeEditingToolbarEvent: EventActions.completeEditingToolbarEvent,
+    cancelEditingToolbarEvent: EventActions.cancelEditingToolbarEvent,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(EventToolbar)  

@@ -50,13 +50,13 @@ class Calendar extends React.Component {
             <Day date={date} onClick={this.handleDateClick}
                 onMouseEnter={this.handleDateMouseEnter}
                 onMouseLeave={this.handleDateMouseLeave}
-                eventCurrentlyBeingEdited={this.props.eventCurrentlyBeingEdited}
+                toolbarEvent={this.props.toolbarEvent}
             />
         </div>;
     }
     handleDateClick = (date) => {
-        if (this.props.eventCurrentlyBeingEdited) {
-            this.props.editDueDateOnEvent(date)
+        if (this.props.toolbarEvent) {
+            this.props.editDueDateOnToolbarEvent(date)
         }
     }
     render() {
@@ -71,11 +71,11 @@ class Calendar extends React.Component {
 
 const mapStateToProps = state => ({
     calendar: state.calendar,
-    eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
+    toolbarEvent: state.event.toolbarEvent,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    editDueDateOnEvent: EventActions.editDueDateOnEvent,
+    editDueDateOnToolbarEvent: EventActions.editDueDateOnToolbarEvent,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Calendar)

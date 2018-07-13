@@ -9,8 +9,8 @@ import * as JiraActions from '../actions/action_jira'
 
 class Team extends React.Component {
     handleTeamMemberClick = (member) => {
-        if (this.props.eventCurrentlyBeingEdited) {
-            this.props.editAssigneeOnEvent(member)
+        if (this.props.toolbarEvent) {
+            this.props.editAssigneeOnToolbarEvent(member)
         }
     }
     fetchUsers = () => {
@@ -66,11 +66,11 @@ class Team extends React.Component {
 const mapStateToProps = state => ({
     users: state.jira.users,
     settings: state.settings,
-    eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
+    toolbarEvent: state.event.toolbarEvent,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-    editAssigneeOnEvent: EventActions.editAssigneeOnEvent,
+    editAssigneeOnToolbarEvent: EventActions.editAssigneeOnToolbarEvent,
     fetchJiraUsers: JiraActions.fetchJiraUsers,
 }, dispatch)
 

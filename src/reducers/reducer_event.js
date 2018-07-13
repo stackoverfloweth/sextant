@@ -1,53 +1,64 @@
-import { EVENT_EDIT } from '../actions/action_event'
+import { EVENT_EDIT, EVENT_VIEW } from '../actions/action_event'
 
-export default function (state = null, action) {
-    const emptyEvent = {
-        watchingForInput: false,
-        event: {
-            eventId: null,
-            jiraTicket: null,
-            dueDate: null,
-            assignee: null
-        }
-    }
-
+export default function (state = {
+    toolbarEvent: null
+}, action) {
     switch (action.type) {
         case EVENT_EDIT.BEGIN:
-            return action.event || emptyEvent
+            return {
+                ...state,
+                toolbarEvent: action.event || {
+                    eventId: null,
+                    jiraTicket: null,
+                    dueDate: null,
+                    assignee: null
+                }
+            }
         case EVENT_EDIT.JIRA:
             return {
                 ...state,
-                watchingForInput: null,
-                event: {
-                    ...state.event,
+                toolbarEvent: {
+                    ...state.toolbarEvent,
                     jiraTicket: action.jiraTicket
                 }
             }
         case EVENT_EDIT.ASSIGNEE:
             return {
                 ...state,
-                watchingForInput: null,
-                event: {
-                    ...state.event,
+                toolbarEvent: {
+                    ...state.toolbarEvent,
                     assignee: action.assignee
                 }
             }
         case EVENT_EDIT.DATE:
             return {
                 ...state,
-                watchingForInput: null,
-                event: {
-                    ...state.event,
+                toolbarEvent: {
+                    ...state.toolbarEvent,
                     dueDate: action.dueDate
                 }
             }
         case EVENT_EDIT.COMPLETE:
             return {
                 ...state,
-                watchingForInput: null
+                toolbarEvent: null
             }
         case EVENT_EDIT.CANCEL:
-            return null
+            return {
+                ...state,
+                toolbarEvent: null
+            }
+        case EVENT_VIEW.BEGIN:
+            return {
+                ...state,
+                openEvent: action.event
+            }
+        case EVENT_VIEW.COMPLETE:
+            return {
+                ...state,
+                openEvent: null
+            }
+
         default:
             return state
     }

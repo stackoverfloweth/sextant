@@ -26,10 +26,10 @@ class App extends React.Component {
 
   toggleEventToolbar = (e) => {
     e.preventDefault()
-    if (this.props.eventCurrentlyBeingEdited) {
-      this.props.cancelEditingEvent()
+    if (this.props.toolbarEvent) {
+      this.props.cancelEditingToolbarEvent()
     } else {
-      this.props.beginEditingEvent()
+      this.props.beginEditingToolbarEvent()
     }
   }
   openSettingsModal = (e) => {
@@ -54,20 +54,20 @@ class App extends React.Component {
       <div className="sextant-app">
         <Navbar addEvent={this.toggleEventToolbar}
           openSettings={this.openSettingsModal}
-          eventCurrentlyBeingEdited={this.props.eventCurrentlyBeingEdited} />
+          toolbarEvent={this.props.toolbarEvent} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 d-none d-sm-block">
               <Sidebar tabs={this.getSideBarTabs()} />
             </div>
             <div className="col-sm-9">
-              {this.props.eventCurrentlyBeingEdited
+              {this.props.toolbarEvent
                 ? <EventToolbar
                   onClose={this.cancelEventEdit}
                   onSubmit={this.submitEventEdit}
                 />
                 : null}
-              {this.props.eventCurrentlyBeingEdited
+              {this.props.toolbarEvent
                 ? <Calendar />
                 : <div>[Buckets Here]</div>
               }
@@ -87,12 +87,12 @@ class App extends React.Component {
 const mapStateToProps = state => ({
   settings: state.settings,
   team: state.team,
-  eventCurrentlyBeingEdited: state.eventCurrentlyBeingEdited,
+  toolbarEvent: state.event.toolbarEvent,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  beginEditingEvent: EventActions.beginEditingEvent,
-  cancelEditingEvent: EventActions.cancelEditingEvent,
+  beginEditingToolbarEvent: EventActions.beginEditingToolbarEvent,
+  cancelEditingToolbarEvent: EventActions.cancelEditingToolbarEvent,
   showSettingsModal: SettingActions.showSettingsModal,
   fetchSettings: SettingActions.fetchSettings,
   fetchJiraBacklog: JiraActions.fetchJiraBacklog,

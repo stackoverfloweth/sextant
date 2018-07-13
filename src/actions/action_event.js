@@ -7,9 +7,17 @@ export const EVENT_EDIT = {
     CANCEL: 'EVENT_EDIT_CANCEL',
 }
 
-export const beginEditingEvent = payload => ({ type: EVENT_EDIT.BEGIN, event: payload })
-export const editJiraTicketOnEvent = payload => ({ type: EVENT_EDIT.JIRA, jiraTicket: payload })
-export const editAssigneeOnEvent = payload => ({ type: EVENT_EDIT.ASSIGNEE, assignee: payload })
-export const editDueDateOnEvent = payload => ({ type: EVENT_EDIT.DATE, dueDate: payload })
-export const completeEditingEvent = payload => ({ type: EVENT_EDIT.COMPLETE, event: payload })
-export const cancelEditingEvent = () => ({ type: EVENT_EDIT.CANCEL })
+export const EVENT_VIEW = {
+    BEGIN: 'EVENT_VIEW_BEGIN',
+    COMPLETE: 'EVENT_VIEW_COMPLETE',
+}
+
+export const beginEditingToolbarEvent = payload => ({ type: EVENT_EDIT.BEGIN, event: payload })
+export const editJiraTicketOnToolbarEvent = payload => ({ type: EVENT_EDIT.JIRA, jiraTicket: payload })
+export const editAssigneeOnToolbarEvent = payload => ({ type: EVENT_EDIT.ASSIGNEE, assignee: payload })
+export const editDueDateOnToolbarEvent = payload => ({ type: EVENT_EDIT.DATE, dueDate: payload })
+export const completeEditingToolbarEvent = payload => ({ type: EVENT_EDIT.COMPLETE, event: payload })
+export const cancelEditingToolbarEvent = () => ({ type: EVENT_EDIT.CANCEL })
+
+export const viewEvent = payload => ({ type: EVENT_VIEW.BEGIN, event: payload })
+export const closeEvent = () => ({ type: EVENT_VIEW.COMPLETE })
