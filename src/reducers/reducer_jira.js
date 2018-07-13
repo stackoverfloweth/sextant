@@ -16,12 +16,12 @@ export default function (state = {
                 backlog: action.backlog.map(x => new Ticket(x))
             }
         case JIRA_SPRINT.RESPONSE:
-            return calculateMemberPoints({
+            return interpolateAndSort({
                 ...state,
                 sprint: constructTickets(action.sprint)
             })
         case JIRA_USERS.RESPONSE:
-            return calculateMemberPoints({
+            return interpolateAndSort({
                 ...state,
                 users: action.users.map(x => new Member(x))
             })
@@ -30,7 +30,7 @@ export default function (state = {
     }
 }
 
-function calculateMemberPoints(state) {
+function interpolateAndSort(state) {
     if (!state.sprint || !state.users) {
         return state;
     }
