@@ -9,7 +9,7 @@
     "bootstrap": "^4.1.0",
     "font-awesome": "^4.7.0",
     "immutable": "^3.8.2",
-    "jquery": "^1.9.1",
+    "jquery": "^1.12.4",
     "lodash": "^4.17.10",
     "moment": "^2.22.1",
     "popper.js": "^1.14.3",

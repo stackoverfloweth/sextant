@@ -10,7 +10,7 @@ export default function (state = buildDefaultCalendar(), action) {
 }
 
 function buildDefaultCalendar() {
-    return buildCalendar(moment('2018-06-27'), moment.duration({ weeks: 2 }));
+    return buildCalendar(moment(), moment.duration({ weeks: 2 }));
 }
 
 function buildCalendar(startDate, duration) {

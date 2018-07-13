@@ -1,6 +1,5 @@
 import { JIRA_BACKLOG, JIRA_USERS, JIRA_SPRINT } from '../actions/action_jira'
 import * as _ from 'lodash'
-import moment from 'moment'
 
 export default function (state = {
     backlog: null,
@@ -38,26 +37,8 @@ function addColorToUserProfiles(users) {
 
 function organizeSprintStructure(issueData) {
     return _(issueData)
-        .filter(x => x.fields.assignee != null && x.fields.duedate != null)
-        .orderBy('fields.duedate')
+        .filter(x => x.fields.assignee != null)
         .groupBy("fields.assignee.accountId")
         .values()
-        .map(issueGroup => {
-            var lastIssueEnd;
-
-            return _.map(issueGroup, issue => {
-                var endDate = issue.fields.duedate ? moment(issue.fields.duedate) : null
-                var startDate = lastIssueEnd ? lastIssueEnd.clone().add(1, 'days') : null
-
-                lastIssueEnd = endDate;
-
-                return {
-                    ...issue,
-                    startDate,
-                    endDate,
-                    color: '#' + Math.floor(Math.random() * 16777215).toString(16)
-                }
-            })
-        })
         .value()
 }
