@@ -26,7 +26,7 @@ class Team extends React.Component {
     getMemberHtml(member) {
         return <li className="member" key={member.emailAddress} style={{ borderColor: member.color }}
             onClick={() => { this.handleTeamMemberClick(member) }} >
-            <img src={member.avatarUrls["48x48"]} alt={member.displayName} />
+            <img src={member.avatar} alt={member.displayName} />
             <div className="content">
                 <div className="title">{member.displayName}</div>
                 <div className="sub-content">

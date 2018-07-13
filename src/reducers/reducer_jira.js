@@ -1,5 +1,7 @@
 import { JIRA_BACKLOG, JIRA_USERS, JIRA_SPRINT } from '../actions/action_jira'
 import * as _ from 'lodash'
+import { Member } from '../entities/member'
+import { Ticket } from '../entities/ticket'
 
 export default function (state = {
     backlog: null,
@@ -11,34 +13,27 @@ export default function (state = {
         case JIRA_BACKLOG.RESPONSE:
             return {
                 ...state,
-                backlog: action.backlog
+                backlog: action.backlog.map(x => new Ticket(x))
             }
         case JIRA_SPRINT.RESPONSE:
             return {
                 ...state,
-                sprint: organizeSprintStructure(action.sprint)
+                sprint: constructTickets(action.sprint)
             }
         case JIRA_USERS.RESPONSE:
             return {
                 ...state,
-                users: addColorToUserProfiles(action.users)
+                users: action.users.map(x => new Member(x))
             }
         default:
             return state
     }
 }
 
-function addColorToUserProfiles(users) {
-    return users.map(x => {
-        x.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-        return x;
-    })
-}
-
-function organizeSprintStructure(issueData) {
+function constructTickets(issueData) {
     return _(issueData)
         .filter(x => x.fields.assignee != null)
+        .map(x => new Ticket(x))
         .groupBy("fields.assignee.accountId")
         .values()
-        .value()
 }

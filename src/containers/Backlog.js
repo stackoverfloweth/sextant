@@ -25,14 +25,14 @@ class Backlog extends React.Component {
     }
     getTicketHtml(ticket) {
         return <div key={ticket.id} className="backlog-ticket" 
-                style={{borderColor: this.getPriorityColor(ticket.fields.priority.name)}} 
+                style={{borderColor: this.getPriorityColor(ticket.priority.name)}} 
                 onClick={() => { this.handleTicketClick(ticket) }}>
-            <div className="title"><img width="16px" src={ticket.fields.priority.iconUrl} alt={ticket.fields.priority.name}/><strong>{ticket.key}</strong></div>
-            <div className="summary">{ticket.fields.summary}</div>
-            <div><span>Status:</span> {ticket.fields.status.name}</div>
-            <div><span>Assignee:</span> {ticket.fields.assignee ? ticket.fields.assignee.displayName : <em>unassigned</em>}</div>
-            <div><span>Creator:</span> {ticket.fields.creator ? ticket.fields.creator.displayName : ""}</div>
-            <div><span>Story Points:</span> {ticket.fields.customfield_10021 || <span className="html-entity">&times;</span>}</div>
+            <div className="title"><img width="16px" src={ticket.priority.iconUrl} alt={ticket.priority.name}/><strong>{ticket.key}</strong></div>
+            <div className="summary">{ticket.summary}</div>
+            <div><span>Status:</span> {ticket.name}</div>
+            <div><span>Assignee:</span> {ticket.assignee ? ticket.assignee.displayName : <em>unassigned</em>}</div>
+            <div><span>Creator:</span> {ticket.creator ? ticket.creator.displayName : ""}</div>
+            <div><span>Story Points:</span> {ticket.storyPoints || <span className="html-entity">&times;</span>}</div>
         </div>
     }
     getPriorityColor(priority){

@@ -49,7 +49,8 @@ class App extends React.Component {
     return (
       <div className="sextant-app">
         <Navbar addEvent={this.openEventToolbar}
-          openSettings={this.openSettingsModal} />
+          openSettings={this.openSettingsModal}
+          eventCurrentlyBeingEdited={this.props.eventCurrentlyBeingEdited} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 d-none d-sm-block">
