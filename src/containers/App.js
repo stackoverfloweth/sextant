@@ -18,15 +18,19 @@ import SettingsModal from '../containers/SettingsModal'
 import '../styles/css/App.css';
 
 class App extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props)
 
     this.props.fetchSettings()
   }
 
-  openEventToolbar = (e) => {
+  toggleEventToolbar = (e) => {
     e.preventDefault()
-    this.props.beginEditingEvent()
+    if (this.props.eventCurrentlyBeingEdited) {
+      this.props.cancelEditingEvent()
+    } else {
+      this.props.beginEditingEvent()
+    }
   }
   openSettingsModal = (e) => {
     e.preventDefault()
@@ -48,13 +52,13 @@ class App extends React.Component {
   render() {
     return (
       <div className="sextant-app">
-        <Navbar addEvent={this.openEventToolbar}
+        <Navbar addEvent={this.toggleEventToolbar}
           openSettings={this.openSettingsModal}
           eventCurrentlyBeingEdited={this.props.eventCurrentlyBeingEdited} />
         <div className="container-fluid">
           <div className="row">
             <div className="col-sm-3 d-none d-sm-block">
-              <Sidebar  tabs={this.getSideBarTabs()}/>
+              <Sidebar tabs={this.getSideBarTabs()} />
             </div>
             <div className="col-sm-9">
               {this.props.eventCurrentlyBeingEdited
@@ -63,7 +67,10 @@ class App extends React.Component {
                   onSubmit={this.submitEventEdit}
                 />
                 : null}
-              <Calendar />
+              {this.props.eventCurrentlyBeingEdited
+                ? <Calendar />
+                : <div>[Buckets Here]</div>
+              }
             </div>
           </div>
           <div id="modal-wrapper">
@@ -85,6 +92,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   beginEditingEvent: EventActions.beginEditingEvent,
+  cancelEditingEvent: EventActions.cancelEditingEvent,
   showSettingsModal: SettingActions.showSettingsModal,
   fetchSettings: SettingActions.fetchSettings,
   fetchJiraBacklog: JiraActions.fetchJiraBacklog,

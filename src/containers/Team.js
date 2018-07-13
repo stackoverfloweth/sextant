@@ -34,7 +34,7 @@ class Team extends React.Component {
                     <span className={`active-indicator ${member.active ? "active" : "inactive"}`}></span>{member.active ? "Active" : "Inactive"}
                 </div>
                 <div className="sub-content">
-                    <span>Total Points:</span>{Math.floor(Math.random() * Math.floor(20))}
+                    <span>Total Points:</span>{member.storyPoints}
                 </div>
             </div>
         </li>

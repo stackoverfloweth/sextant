@@ -62,7 +62,7 @@ class Backlog extends React.Component {
         }
 
         return (
-            <div className="backlog sticky-top row">
+            <div className="backlog row">
                 <div className="col">
                     {this.getBacklogList()}
                 </div>
