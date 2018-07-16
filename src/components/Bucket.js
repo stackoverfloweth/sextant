@@ -1,22 +1,31 @@
 import React from 'react'
+import BucketItem from './BucketItem'
+import { editJiraTicketOnEvent } from '../actions/action_event';
 
 class Bucket extends React.Component {
 
-    bucketItem(ticketNumber, height) {
-        return (
-            <div className='bucket-item' style={{ height: `${height}%` }}>{ticketNumber}</div>
-        )
-    }
-
     render() {
+        const { bucketHeightVh, usersprint, user, maxStoryPoints } = this.props
         return (
             <div className='dev-bucket col-md-3 col-lg-2'>
-                <div className='bucket-content'>
-                    {this.bucketItem('CHID-1036', 10)}
-                    {this.bucketItem('CIE-52', 40)}
-                    {this.bucketItem('FT-117', 50)}
+                <div style={{ height: `${bucketHeightVh}vh` }} className='dev-bucket-body'>
+                    <div className='bucket-content'>
+                    {/* <div className='wave'/> */}
+                        {usersprint &&
+                            usersprint.issues &&
+                            usersprint.issues.map(ticket =>
+                                <BucketItem
+                                    key={ticket.key}
+                                    ticket={ticket}
+                                    bucketHeightVh={bucketHeightVh}
+                                    maxStoryPoints={maxStoryPoints} />
+                            )}
+                    </div>
                 </div>
+                <div className='bucket-title'>{user.displayName}</div>
             </div>
+
+
         )
     }
 }

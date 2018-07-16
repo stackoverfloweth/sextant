@@ -1,21 +1,36 @@
 import React from 'react'
 import Bucket from '../components/Bucket'
+import { connect } from 'react-redux'
+import _ from 'lodash'
 
 class BucketView extends React.Component {
     render() {
-        return (
+        const bucketHeightVh = 30
+        const maxStoryPoints = this.props.sprint.reduce((maxStoryPoints, userSprint) =>
+            Math.max(maxStoryPoints, _.sumBy(userSprint.issues, 'storyPoints'))
+            , 0)
+        return (            
             <div className='bucket-container container'>
                 <div className="row">
-                    <Bucket />
-                    <Bucket />
-                    <Bucket />
-                    <Bucket />
-                    <Bucket />
-                    <Bucket />
+                    {this.props.users &&
+                        this.props.users.map(user => {
+                            return <Bucket
+                                maxStoryPoints={maxStoryPoints}
+                                bucketHeightVh={bucketHeightVh}
+                                key={user.emailAddress}
+                                user={user}
+                                usersprint={_.find(this.props.sprint, { 'assignee': user.emailAddress })} />
+                        })
+                    }
                 </div>
             </div>
         )
     }
 }
 
-export default BucketView
+const mapStateToProps = state => ({
+    users: state.jira.users,
+    sprint: state.jira.sprint
+})
+
+export default connect(mapStateToProps)(BucketView)
