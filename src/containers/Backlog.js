@@ -26,8 +26,13 @@ class Backlog extends React.Component {
             </ul>
         )
     }
+    startDrag(event, ticketId) {
+        event.dataTransfer.setData("text", ticketId)
+    }
     getTicketHtml(ticket) {
         return <div key={ticket.id} className="backlog-ticket"
+            draggable="true"
+            onDragStart={(e) => this.startDrag(e, ticket.key)}
             style={{ borderColor: this.getPriorityColor(ticket.priority.name) }}
             onClick={() => { this.handleTicketClick(ticket) }}>
             <div className="title"><img width="16px" src={ticket.priority.iconUrl} alt={ticket.priority.name} /><strong>{ticket.key}</strong></div>
@@ -66,7 +71,7 @@ class Backlog extends React.Component {
 
         return (
             <div className="backlog row">
-                {this.props.openEvent && <IssueModal onCancel={this.props.closeEvent} event={this.props.openEvent}/>}
+                {this.props.openEvent && <IssueModal onCancel={this.props.closeEvent} event={this.props.openEvent} />}
                 <div className="col">
                     {this.getBacklogList()}
                 </div>

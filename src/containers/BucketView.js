@@ -11,7 +11,7 @@ class BucketView extends React.Component {
             , 0)
         return (            
             <div className='bucket-container'>
-                <div className="">
+                {/* <div className=""> */}
                     {this.props.users &&
                         this.props.users.map(user => {
                             return <Bucket
@@ -22,7 +22,7 @@ class BucketView extends React.Component {
                                 usersprint={_.find(this.props.sprint, { 'assignee': user.emailAddress })} />
                         })
                     }
-                </div>
+                {/* </div> */}
             </div>
         )
     }
