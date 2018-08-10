@@ -1,3 +1,5 @@
+import {settings} from '../shared/settings'
+
 export class Ticket {
     id = ''
     key = ''
@@ -18,7 +20,7 @@ export class Ticket {
         this.description = ticketData.fields.description
         this.status = ticketData.fields.status.name
         this.priority = ticketData.fields.priority
-        this.storyPoints = ticketData.fields.customfield_10021
+        this.storyPoints = ticketData.fields[settings("storyPointField")]
 
         if (ticketData.fields.assignee) {
             this.assignee = ticketData.fields.assignee

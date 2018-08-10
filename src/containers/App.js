@@ -6,6 +6,7 @@ import Calendar from './Calendar'
 import Team from './Team'
 import Backlog from './Backlog'
 import EventToolbar from './EventToolbar'
+import axios from 'axios'
 
 import * as EventActions from '../actions/action_event'
 import * as SettingActions from '../actions/action_setting'
@@ -22,7 +23,10 @@ class App extends React.Component {
   constructor(props) {
     super(props)
 
-    this.props.fetchSettings()
+    axios.get('http://localhost:3000/setup.json').then(({ data }) => {
+      localStorage.settings = JSON.stringify(data)
+      this.props.fetchJiraSprint()
+    })
   }
 
   toggleEventToolbar = (e) => {
@@ -95,7 +99,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   beginEditingToolbarEvent: EventActions.beginEditingToolbarEvent,
   cancelEditingToolbarEvent: EventActions.cancelEditingToolbarEvent,
   showSettingsModal: SettingActions.showSettingsModal,
-  fetchSettings: SettingActions.fetchSettings,
+  fetchJiraSprint: JiraActions.fetchJiraSprint,
   fetchJiraBacklog: JiraActions.fetchJiraBacklog,
   fetchJiraUsers: JiraActions.fetchJiraUsers
 }, dispatch)

@@ -16,6 +16,22 @@ class SettingsForm extends React.Component {
                 <label htmlFor="firstName">Basic Auth Token</label>
                 <Field className="form-control" name="basicToken" component="input" type="text" />
             </div>
+            <div className="form-group">
+                <label htmlFor="sprintFilterId">Sprint FilterID</label>
+                <Field className="form-control" name="sprintFilterId" component="input" type="text" />
+            </div>
+            <div className="form-group">
+                <label htmlFor="backlogFilterId">Backlog FilterID</label>
+                <Field className="form-control" name="backlogFilterId" component="input" type="text" />
+            </div>
+            <div className="form-group">
+                <label htmlFor="storyPointField">FieldID for Story Points</label>
+                <Field className="form-control" name="storyPointField" component="input" type="text" />
+            </div>
+            <div className="form-group">
+                <label htmlFor="groupName">Team Groupname</label>
+                <Field className="form-control" name="groupName" component="input" type="text" />
+            </div>
         </form>
     }
 }

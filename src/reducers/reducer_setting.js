@@ -1,4 +1,4 @@
-import { SETTINGS, SETTINGS_SAVE, SETTINGS_FETCH } from '../actions/action_setting'
+import { SETTINGS, SETTINGS_SAVE } from '../actions/action_setting'
 
 export default function (state = getDefaultSettings(), action) {
     switch (action.type) {
@@ -11,12 +11,6 @@ export default function (state = getDefaultSettings(), action) {
         return {
             ...state,
             showModal: false
-        }
-        case SETTINGS_FETCH.RESPONSE:
-        return {
-            ...state,
-            hasFetched: true,
-            ...action.settings
         }
         case SETTINGS_SAVE.RESPONSE:
         return state

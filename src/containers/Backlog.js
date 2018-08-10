@@ -3,6 +3,7 @@ import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
 
 import ReactLoading from 'react-loading'
+import { getPriorityColor } from '../shared/issue'
 import IssueModal from '../components/IssueModal'
 
 import * as EventActions from '../actions/action_event'
@@ -28,7 +29,7 @@ class Backlog extends React.Component {
     }
     getTicketHtml(ticket) {
         return <div key={ticket.id} className="backlog-ticket"
-            style={{ borderColor: this.getPriorityColor(ticket.priority.name) }}
+            style={{ borderColor: getPriorityColor(ticket.priority.name) }}
             onClick={() => { this.handleTicketClick(ticket) }}>
             <div className="title"><img width="16px" src={ticket.priority.iconUrl} alt={ticket.priority.name} /><strong>{ticket.key}</strong></div>
             <div className="summary">{ticket.summary}</div>
@@ -38,18 +39,6 @@ class Backlog extends React.Component {
             <div><span>Story Points:</span> {ticket.storyPoints || <span className="html-entity">&times;</span>}</div>
         </div>
     }
-    getPriorityColor(priority) {
-        switch (priority) {
-            case "Critical":
-                return "#cd1e20";
-            case "High":
-                return "#ea4646";
-            case "Medium":
-                return "#e68941";
-            default:
-                return "#2b8736";
-        }
-    }
     getLoadingElement() {
         return <div className="d-flex justify-content-center p-5">
             <ReactLoading type="cubes" color="#fff" height={20} width={50} />
@@ -57,16 +46,14 @@ class Backlog extends React.Component {
 
     }
     render() {
-        if (!this.props.settings.jiraUrl || !this.props.settings.basicToken) {
-            return this.getLoadingElement()
-        } else if (!this.props.backlog) {
+        if (!this.props.backlog) {
             this.fetchBacklog()
             return this.getLoadingElement()
         }
 
         return (
             <div className="backlog row">
-                {this.props.openEvent && <IssueModal onCancel={this.props.closeEvent} event={this.props.openEvent}/>}
+                {this.props.openEvent && <IssueModal onCancel={this.props.closeEvent} event={this.props.openEvent} />}
                 <div className="col">
                     {this.getBacklogList()}
                 </div>

@@ -4,7 +4,7 @@ import * as EventActions from '../actions/action_event'
 
 function* fetchIssue(action) {
     try {
-        var {data} = yield call(JiraApi.fetchIssue, action.settings, action.event.key)
+        var {data} = yield call(JiraApi.fetchIssue, action.event.key)
         yield put(EventActions.recievedEvent(data))
     } catch (exception) {
         console.log(exception);

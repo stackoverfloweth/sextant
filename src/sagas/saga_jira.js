@@ -1,7 +1,6 @@
 import { call, put, takeEvery } from 'redux-saga/effects'
 import * as JiraApi from '../api/api_jira'
 import * as JiraActions from '../actions/action_jira'
-import * as SettingsActions from '../actions/action_setting'
 
 function* fetchJiraBacklog(action) {
     try {
@@ -31,7 +30,6 @@ function* fetchJiraUsers(action) {
 }
 
 export default [
-    takeEvery(SettingsActions.SETTINGS_FETCH.RESPONSE, fetchJiraSprint),
     takeEvery(JiraActions.JIRA_BACKLOG.REQUEST, fetchJiraBacklog),
     takeEvery(JiraActions.JIRA_SPRINT.REQUEST, fetchJiraSprint),
     takeEvery(JiraActions.JIRA_USERS.REQUEST, fetchJiraUsers),

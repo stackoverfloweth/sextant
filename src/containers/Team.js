@@ -46,9 +46,7 @@ class Team extends React.Component {
 
     }
     render() {
-        if (!this.props.settings.jiraUrl || !this.props.settings.basicToken) {
-            return this.getLoadingElement()
-        } else if (!this.props.users) {
+        if (!this.props.users) {
             this.fetchUsers()
             return this.getLoadingElement()
         }

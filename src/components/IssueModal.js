@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import _ from 'lodash'
+import { getPriorityColor } from '../shared/issue'
 
 import ReactLoading from 'react-loading'
 import Modal from 'react-bootstrap4-modal'
@@ -52,16 +53,15 @@ export default class IssueModal extends React.Component {
     getCommentsHtml() {
         return this.props.event.comments.map(x => (
             <div className="comment" key={x.id}>
-                <div class="author">{x.author.displayName}</div>
+                <div className="author">{x.author.displayName}</div>
                 <div dangerouslySetInnerHTML={{ __html: x.body }}></div>
-                <div class="datestamp">{x.created}</div>
+                <div className="datestamp">{x.created}</div>
             </div>
         ))
     }
     render() {
-        console.log(this.props.event)
         return ReactDOM.createPortal(
-            <Modal visible={true} onClickBackdrop={this.onCancel} dialogClassName="modal-lg modal-dialog-centered">
+            <Modal visible={true} onClickBackdrop={this.onCancel} dialogClassName="modal-lg modal-dialog-centered issue-modal">
                 <div className="modal-header">
                     <h5 className="modal-title">
                         {this.props.event.key}
@@ -70,7 +70,7 @@ export default class IssueModal extends React.Component {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div className="modal-body">
+                <div className="modal-body" style={{borderColor: getPriorityColor(this.props.event.priority.name)}}>
                     {this.props.event.isLoading
                         ? this.getLoadingElement()
                         : this.getIssueContent()
