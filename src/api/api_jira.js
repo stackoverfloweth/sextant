@@ -1,12 +1,12 @@
 import axios from 'axios'
 
 export const fetchBacklog = (settings) => {
-    const url = `https://${settings.jiraUrl}/rest/api/2/search?jql=filter=${settings.backlogFilterId}`
+    const url = `https://${settings.jiraUrl}/rest/api/2/search?jql=filter=${settings.backlogFilterId}+order+by+rank`
     return axios.get(url, { headers: { "Authorization": `Basic ${settings.basicToken}` } })
 }
 
 export const fetchSprint = (settings) => {
-    const url = `https://${settings.jiraUrl}/rest/api/2/search?jql=filter=${settings.sprintFilterId}`
+    const url = `https://${settings.jiraUrl}/rest/api/2/search?jql=filter=${settings.sprintFilterId}+order+by+duedate`
     return axios.get(url, { headers: { "Authorization": `Basic ${settings.basicToken}` } })
 }
 
@@ -16,6 +16,6 @@ export const fetchUsers = (settings) => {
 }
 
 export const fetchIssue = (settings, issueKey) => {
-    const url = `https://${settings.jiraUrl}/rest/api/2/issue/${issueKey}`
+    const url = `https://${settings.jiraUrl}/rest/api/2/issue/${issueKey}?expand=renderedFields`
     return axios.get(url, { headers: { "Authorization": `Basic ${settings.basicToken}` } })
 }

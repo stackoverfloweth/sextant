@@ -17,7 +17,7 @@ export class Ticket {
         this.summary = ticketData.fields.summary
         this.description = ticketData.fields.description
         this.status = ticketData.fields.status.name
-        this.priority = ticketData.fields.priority 
+        this.priority = ticketData.fields.priority
         this.storyPoints = ticketData.fields.customfield_10021
 
         if (ticketData.fields.assignee) {
@@ -29,8 +29,12 @@ export class Ticket {
         if (ticketData.fields.comment) {
             this.comments = ticketData.fields.comment.comments
         }
-        // if (ticketData.fields.comment) {
-        //     this.attachments = ticketData.comment.comments
-        // }
+        if (ticketData.renderedFields) {
+            this.description = ticketData.renderedFields.description
+
+            if (ticketData.renderedFields.comment) {
+                this.comments = ticketData.renderedFields.comment.comments
+            }
+        }
     }
 }

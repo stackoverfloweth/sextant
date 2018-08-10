@@ -47,7 +47,7 @@ class EventToolbar extends React.Component {
                         <span>Add to Calendar</span>
                     </button>
                 </div>
-                <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.cancelEditingEvent}>
+                <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={this.props.onClose}>
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>

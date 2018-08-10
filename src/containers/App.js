@@ -64,7 +64,7 @@ class App extends React.Component {
             <div className="col-sm-9">
               {this.props.toolbarEvent
                 ? <EventToolbar
-                  onClose={this.cancelEventEdit}
+                  onClose={this.toggleEventToolbar}
                   onSubmit={this.submitEventEdit}
                 />
                 : null}

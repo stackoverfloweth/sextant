@@ -1,0 +1,26 @@
+.issue-content {
+    padding-bottom: 15px;    
+}
+
+.comment-container {
+    margin: -15px;
+    padding: 5px 15px;
+    background: #f0f0f0;
+    border-top: 1px solid #e9ecef;
+
+    .comment {
+        border-bottom: 1px solid #d0d0d0;
+        padding: 4px 0;
+
+        .author {
+            font-weight: bold;
+        }
+        .datestamp {
+            font-style: italic;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
