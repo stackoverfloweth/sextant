@@ -5,13 +5,13 @@ import _ from 'lodash'
 
 class BucketView extends React.Component {
     render() {
-        const bucketHeightVh = 30
+        const bucketHeightVh = 80
         const maxStoryPoints = this.props.sprint.reduce((maxStoryPoints, userSprint) =>
             Math.max(maxStoryPoints, _.sumBy(userSprint.issues, 'storyPoints'))
             , 0)
         return (            
-            <div className='bucket-container container'>
-                <div className="row">
+            <div className='bucket-container'>
+                <div className="">
                     {this.props.users &&
                         this.props.users.map(user => {
                             return <Bucket
