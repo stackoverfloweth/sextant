@@ -5,14 +5,25 @@ import { assignTicketAction } from '../actions/action_jira';
 
 class Bucket extends React.Component {
 
-    preventDefault = (event) => {
+    constructor(props) {
+        super(props)
+        this.state = { dragHover: false }
+    }
+
+    handleDragOver = (event) => {
         event.preventDefault()
+        this.setState({ dragHover: true })
+    }
+
+    handleDragLeave = (event) => {
+        event.preventDefault()
+        this.setState({ dragHover: false })
     }
 
     handleDrop(event, user) {
         event.preventDefault()
         var data = event.dataTransfer.getData("text")
-        //alert("data received: " + data + "  for user: " + user.displayName)
+        this.setState({ dragHover: false })
         this.props.assignTicketAction({
             ticketId: data,
             user: user
@@ -23,9 +34,11 @@ class Bucket extends React.Component {
         const { bucketHeightVh, usersprint, user, maxStoryPoints } = this.props
         return (
             <div className='dev-bucket col-md-3 col-lg-2'
-                onDragOver={this.preventDefault} onDrop={(ev) => this.handleDrop(ev, user)}
+                onDragOver={this.handleDragOver}
+                onDragLeave={this.handleDragLeave}
+                onDrop={(ev) => this.handleDrop(ev, user)}
             >
-                <div style={{ height: `${bucketHeightVh}vh` }} className='dev-bucket-body'>
+                <div style={{ height: `${bucketHeightVh}vh` }} className={this.state.dragHover ? 'dev-bucket-body drop-hover' : 'dev-bucket-body'}>
                     <div className='bucket-content'>
                         {/* <div className='wave'/> */}
                         {usersprint &&
