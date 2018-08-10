@@ -71,6 +71,16 @@ function constructTickets(issueData) {
 }
 
 function addTicketToUserSprint(ticketId, userId, state) {
+    if (state.sprint.find(x => x.assignee === userId) === undefined) {
+        return [
+            {
+                assignee: userId,
+                issues: state.backlog.filter(t => t.key === ticketId)
+            },
+            ...state.sprint
+        ]
+    }
+
     return state.sprint.map(x => {
         if (x.assignee === userId) {
             return {
