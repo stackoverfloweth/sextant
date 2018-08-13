@@ -29,8 +29,19 @@ function* fetchJiraUsers(action) {
     }
 }
 
+function* assignJiraTicket(payload) {
+    try {
+        // TODO: ADD JIRA API REQUEST
+        yield put(JiraActions.assignTicketResponse(payload.payload))
+    } catch (exception) {
+        console.log(exception);
+    }
+}
+
+
 export default [
     takeEvery(JiraActions.JIRA_BACKLOG.REQUEST, fetchJiraBacklog),
     takeEvery(JiraActions.JIRA_SPRINT.REQUEST, fetchJiraSprint),
     takeEvery(JiraActions.JIRA_USERS.REQUEST, fetchJiraUsers),
+    takeEvery(JiraActions.JIRA_ASSIGN_TICKET.REQUEST, assignJiraTicket),
 ]
