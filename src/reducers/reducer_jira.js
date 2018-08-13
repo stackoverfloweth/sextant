@@ -1,4 +1,4 @@
-import { JIRA_BACKLOG, JIRA_USERS, JIRA_SPRINT } from '../actions/action_jira'
+import { JIRA_BACKLOG, JIRA_USERS, JIRA_SPRINT, JIRA_ASSIGN_TICKET } from '../actions/action_jira'
 import * as _ from 'lodash'
 import { Member } from '../entities/member'
 import { Ticket } from '../entities/ticket'
@@ -25,6 +25,13 @@ export default function (state = {
                 ...state,
                 users: action.users.map(x => new Member(x))
             })
+        case JIRA_ASSIGN_TICKET.RESPONSE:
+            const { ticketId, user: { emailAddress } } = action.payload
+            return {
+                ...state,
+                backlog: state.backlog.filter(x => x.key !== ticketId),
+                sprint: addTicketToUserSprint(ticketId, emailAddress, state)
+            }
         default:
             return state
     }
@@ -61,4 +68,30 @@ function constructTickets(issueData) {
             }
         })
         .value()
+}
+
+function addTicketToUserSprint(ticketId, userId, state) {
+    if (state.sprint.find(x => x.assignee === userId) === undefined) {
+        return [
+            {
+                assignee: userId,
+                issues: state.backlog.filter(t => t.key === ticketId)
+            },
+            ...state.sprint
+        ]
+    }
+
+    return state.sprint.map(x => {
+        if (x.assignee === userId) {
+            return {
+                ...x,
+                issues: [
+                    state.backlog.filter(t => t.key === ticketId)[0],
+                    ...x.issues
+                ]
+            }
+        } else {
+            return x
+        }
+    })
 }

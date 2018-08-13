@@ -12,7 +12,7 @@ const TicketTitle = (ticket) => (
 
 
 const SmallTicketTitle = (ticket) => (
-    <a className='small-bucket-item' href={`https://itscompliance.atlassian.net/browse/${ticket.key}`} target='_blank' />
+    <a className='small-bucket-item' href={`https://itscompliance.atlassian.net/browse/${ticket.key}`} target='_blank' > </a>
 )
 
 const BucketItem = ({ ticket, bucketHeightVh, maxStoryPoints }) => {

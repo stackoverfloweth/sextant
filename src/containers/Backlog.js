@@ -27,8 +27,13 @@ class Backlog extends React.Component {
             </ul>
         )
     }
+    startDrag(event, ticketId) {
+        event.dataTransfer.setData("text", ticketId)
+    }
     getTicketHtml(ticket) {
         return <div key={ticket.id} className="backlog-ticket"
+            draggable="true"
+            onDragStart={(e) => this.startDrag(e, ticket.key)}
             style={{ borderColor: getPriorityColor(ticket.priority.name) }}
             onClick={() => { this.handleTicketClick(ticket) }}>
             <div className="title"><img width="16px" src={ticket.priority.iconUrl} alt={ticket.priority.name} /><strong>{ticket.key}</strong></div>
