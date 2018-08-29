@@ -19,6 +19,7 @@ export class Ticket {
         this.summary = ticketData.fields.summary
         this.description = ticketData.fields.description
         this.status = ticketData.fields.status.name
+        this.statusKey = ticketData.fields.status.statusCategory.key
         this.priority = ticketData.fields.priority
         this.storyPoints = ticketData.fields[settings("storyPointField")]
 

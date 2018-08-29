@@ -39,16 +39,22 @@
                     background-color: #fff;
                     border-radius: 3px;
                     box-shadow: 0 1px 0 #ccc;
+                    font-size: 0.8em;
                     cursor: pointer;
 
                     .ticket-key {
                         font-weight: bold;
-                        font-size: 0.9em;
+                        font-size: 1.14em;
                         height: 14px;
                     }
 
+                    .ticket-points {
+                        float: right;
+                        color: lightgrey;
+                        font-weight: bold;
+                    }
+
                     .ticket-description {
-                        font-size: 0.8em;
                         color: #664c4c;
                         height: calc(100% - 14px);
                         overflow: visible;
@@ -62,6 +68,18 @@
                         height: 100%;
                         cursor: pointer;
                         display: block;
+                    }
+
+                    &.status-new {
+
+                    }
+                    &.status-indeterminate {
+                        
+                    }
+                    &.status-done {
+                        .ticket-key{
+                            text-decoration: line-through;
+                        }
                     }
                 }
             }

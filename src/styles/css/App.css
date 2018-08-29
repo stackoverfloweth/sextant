@@ -272,13 +272,17 @@
           background-color: #fff;
           border-radius: 3px;
           box-shadow: 0 1px 0 #ccc;
+          font-size: 0.8em;
           cursor: pointer; }
           .bucket-container .bucket .bucket-body .bucket-content .bucket-item .ticket-key {
             font-weight: bold;
-            font-size: 0.9em;
+            font-size: 1.14em;
             height: 14px; }
+          .bucket-container .bucket .bucket-body .bucket-content .bucket-item .ticket-points {
+            float: right;
+            color: lightgrey;
+            font-weight: bold; }
           .bucket-container .bucket .bucket-body .bucket-content .bucket-item .ticket-description {
-            font-size: 0.8em;
             color: #664c4c;
             height: calc(100% - 14px);
             overflow: visible;
@@ -290,6 +294,8 @@
             height: 100%;
             cursor: pointer;
             display: block; }
+          .bucket-container .bucket .bucket-body .bucket-content .bucket-item.status-done .ticket-key {
+            text-decoration: line-through; }
     .bucket-container .bucket .bucket-title {
       text-align: center;
       color: white; }

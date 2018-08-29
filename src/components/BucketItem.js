@@ -6,8 +6,10 @@ const BucketItem = ({ ticket, bucketHeightVh, maxStoryPoints, onClick }) => {
     const meetsMinHeight = itemHeight > minHeight
 
     return (
-        <div className='bucket-item' style={{ height: `${meetsMinHeight ? itemHeight : minHeight}vh` }} onClick={onClick}>
+        <div className={`bucket-item status-${ticket.statusKey}`} style={{ height: `${meetsMinHeight ? itemHeight : minHeight}vh` }} onClick={onClick}>
+            <div className="ticket-points">{ticket.storyPoints}</div>
             <div className="ticket-key">{ticket.key}</div>
+            {meetsMinHeight && <div className="ticket-status">[{ticket.status}]</div>}
             {meetsMinHeight && <div className='ticket-description'>{ticket.summary}</div>}
         </div>
     )
