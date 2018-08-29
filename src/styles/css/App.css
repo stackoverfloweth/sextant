@@ -271,18 +271,20 @@
           padding: 4px;
           background-color: #fff;
           border-radius: 3px;
-          box-shadow: 0 1px 0 #ccc; }
+          box-shadow: 0 1px 0 #ccc;
+          cursor: pointer; }
           .bucket-container .bucket .bucket-body .bucket-content .bucket-item .ticket-key {
-            display: block;
             font-weight: bold;
-            font-size: 0.9em; }
+            font-size: 0.9em;
+            height: 14px; }
           .bucket-container .bucket .bucket-body .bucket-content .bucket-item .ticket-description {
-            display: block;
             font-size: 0.8em;
             color: #664c4c;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis; }
+            height: calc(100% - 14px);
+            overflow: visible;
+            word-wrap: break-word;
+            white-space: normal;
+            overflow-wrap: break-word; }
           .bucket-container .bucket .bucket-body .bucket-content .bucket-item .small-bucket-item {
             width: 100%;
             height: 100%;

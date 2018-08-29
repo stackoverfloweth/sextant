@@ -20,6 +20,6 @@ export const editDueDateOnToolbarEvent = payload => ({ type: EVENT_EDIT.DATE, du
 export const completeEditingToolbarEvent = payload => ({ type: EVENT_EDIT.COMPLETE, event: payload })
 export const cancelEditingToolbarEvent = () => ({ type: EVENT_EDIT.CANCEL })
 
-export const viewEvent = (settings, event) => ({ type: EVENT_VIEW.BEGIN, settings, event })
+export const viewEvent = (event) => ({ type: EVENT_VIEW.BEGIN, event })
 export const recievedEvent = payload => ({ type: EVENT_VIEW.RECEIVED, event: payload })
 export const closeEvent = () => ({ type: EVENT_VIEW.COMPLETE })

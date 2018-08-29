@@ -2,27 +2,27 @@ import { call, put, takeEvery } from 'redux-saga/effects'
 import * as JiraApi from '../api/api_jira'
 import * as JiraActions from '../actions/action_jira'
 
-function* fetchJiraBacklog(action) {
+function* fetchJiraBacklog() {
     try {
-        var {data} = yield call(JiraApi.fetchBacklog, action.settings)
+        var {data} = yield call(JiraApi.fetchBacklog)
         yield put(JiraActions.recievedJiraBacklog(data.issues))
     } catch (exception) {
         console.log(exception);
     }
 }
 
-function* fetchJiraSprint(action) {
+function* fetchJiraSprint() {
     try {
-        var {data} = yield call(JiraApi.fetchSprint, action.settings)
+        var {data} = yield call(JiraApi.fetchSprint)
         yield put(JiraActions.recievedJiraSprint(data.issues))
     } catch (exception) {
         console.log(exception);
     }
 }
 
-function* fetchJiraUsers(action) {
+function* fetchJiraUsers() {
     try {
-        var {data} = yield call(JiraApi.fetchUsers, action.settings)
+        var {data} = yield call(JiraApi.fetchUsers)
         yield put(JiraActions.recievedJiraUsers(data.users.items))
     } catch (exception) {
         console.log(exception);

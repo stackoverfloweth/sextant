@@ -39,20 +39,22 @@
                     background-color: #fff;
                     border-radius: 3px;
                     box-shadow: 0 1px 0 #ccc;
+                    cursor: pointer;
 
                     .ticket-key {
-                        display: block;
                         font-weight: bold;
                         font-size: 0.9em;
+                        height: 14px;
                     }
 
                     .ticket-description {
-                        display: block;
                         font-size: 0.8em;
                         color: #664c4c;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
+                        height: calc(100% - 14px);
+                        overflow: visible;
+                        word-wrap: break-word;
+                        white-space:normal;
+                        overflow-wrap: break-word;
                     }
 
                     .small-bucket-item {

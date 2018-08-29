@@ -18,13 +18,13 @@ export const JIRA_ASSIGN_TICKET = {
     RESPONSE: 'JIRA_ASSIGN_TICKET_RESPONSE',
 }
 
-export const fetchJiraBacklog = settings => ({ type: JIRA_BACKLOG.REQUEST, settings: settings })
+export const fetchJiraBacklog = () => ({ type: JIRA_BACKLOG.REQUEST })
 export const recievedJiraBacklog = payload => ({ type: JIRA_BACKLOG.RESPONSE, backlog: payload })
 
-export const fetchJiraSprint = settings => ({ type: JIRA_SPRINT.REQUEST, settings: settings })
+export const fetchJiraSprint = () => ({ type: JIRA_SPRINT.REQUEST })
 export const recievedJiraSprint = payload => ({ type: JIRA_SPRINT.RESPONSE, sprint: payload })
 
-export const fetchJiraUsers = settings => ({ type: JIRA_USERS.REQUEST, settings: settings })
+export const fetchJiraUsers = () => ({ type: JIRA_USERS.REQUEST })
 export const recievedJiraUsers = payload => ({ type: JIRA_USERS.RESPONSE, users: payload })
 
 export const assignTicketAction = payload => ({ type: JIRA_ASSIGN_TICKET.REQUEST, payload })

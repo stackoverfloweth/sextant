@@ -41,7 +41,7 @@ class Bucket extends React.Component {
             return this.props.usersprint.issues.map(ticket =>
                 <BucketItem
                     {...this.props}
-                    onClick={() => this.props.viewEvent({}, ticket)}
+                    onClick={() => this.props.viewEvent(ticket)}
                     key={ticket.key}
                     ticket={ticket}
                 />

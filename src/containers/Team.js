@@ -14,7 +14,7 @@ class Team extends React.Component {
         }
     }
     fetchUsers = () => {
-        this.props.fetchJiraUsers(this.props.settings);
+        this.props.fetchJiraUsers();
     }
     getTeamMembersList = () => {
         return (
@@ -63,7 +63,6 @@ class Team extends React.Component {
 
 const mapStateToProps = state => ({
     users: state.jira.users,
-    settings: state.settings,
     toolbarEvent: state.event.toolbarEvent,
 })
 

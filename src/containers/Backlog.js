@@ -13,11 +13,11 @@ class Backlog extends React.Component {
         if (this.props.toolbarEvent) {
             this.props.editJiraTicketOnToolbarEvent(ticket)
         } else {
-            this.props.viewEvent(this.props.settings, ticket)
+            this.props.viewEvent(ticket)
         }
     }
     fetchBacklog = () => {
-        this.props.fetchJiraBacklog(this.props.settings);
+        this.props.fetchJiraBacklog();
     }
     getBacklogList = () => {
         return (
@@ -67,7 +67,6 @@ class Backlog extends React.Component {
 
 const mapStateToProps = state => ({
     backlog: state.jira.backlog,
-    settings: state.settings,
     toolbarEvent: state.event.toolbarEvent,
 })
 
