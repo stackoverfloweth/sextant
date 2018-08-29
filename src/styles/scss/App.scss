@@ -1,42 +1,43 @@
 @import "variables";
-@import 'sidebar';
-@import 'sevenColumns';
-@import 'calendar';
-@import 'team';
-@import 'backlog';
-@import 'eventToolbar';
-@import 'issueModal';
-@import 'bucketView';
-@import 'bucket';
+@import "sidebar";
+@import "sevenColumns";
+@import "calendar";
+@import "team";
+@import "backlog";
+@import "eventToolbar";
+@import "issueModal";
+@import "bucket";
 
 body {
-  background-image: url('../../media/ocean-water.jpg');
-  background-size: cover;
+    background-image: url("../../media/ocean-water.jpg");
+    background-size: auto;
 }
 
-.sextant-app {
- .logo {
-    background-image: url('../../media/sextant.png');
-    background-size: cover;
-    display: inline-block;
-    height: 35px;
-    width: 35px;
-  }
+#root {
+    .sextant-app {
+        .logo {
+            background-image: url("../../media/sextant.png");
+            background-size: cover;
+            display: inline-block;
+            height: 35px;
+            width: 35px;
+        }
 
-  h1 {
-    display: inline-block;
-    font-weight: 200;
-  }
+        h1 {
+            display: inline-block;
+            font-weight: 200;
+        }
 
-  .overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: black;
-    opacity: 0.5;
-  }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: black;
+            opacity: 0.5;
+        }
+    }
 }
 
-@import '../../../node_modules/bootstrap/scss/bootstrap';
+@import "../../../node_modules/bootstrap/scss/bootstrap";

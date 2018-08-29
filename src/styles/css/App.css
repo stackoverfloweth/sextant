@@ -236,94 +236,80 @@
       border-bottom: none; }
 
 .bucket-container {
-  background-color: rgba(231, 246, 255, 0.226);
-  margin: 5vh;
+  margin-left: -15px;
+  margin-right: -15px;
   position: fixed;
+  display: flex;
+  align-items: center;
   top: 90px;
-  left: 25%;
   bottom: 0;
+  right: 0;
   width: 75%;
-  margin: 0;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
   -webkit-overflow-scrolling: touch; }
-
-.dev-bucket {
-  color: white;
-  margin: 10px;
-  padding: 0 !important;
-  display: inline-block;
-  margin-top: 3%; }
-
-.drop-hover {
-  background-color: rgba(0, 0, 0, 0.24); }
-
-.dev-bucket-body {
-  padding: 0 !important;
-  border: 5px solid rgba(255, 255, 255, 0.616);
-  border-radius: 0 0 2vh 2vh;
-  border-top: none;
-  overflow: hidden;
-  width: 100%;
-  position: relative; }
-
-.bucket-content {
-  position: absolute;
-  width: 100%;
-  bottom: 0; }
-
-.bucket-item {
-  margin-top: 2px;
-  height: 20%;
-  overflow: hidden;
-  font-size: 2vh;
-  height: 14px;
-  line-height: 14px; }
-
-.bucket-title {
-  text-align: center; }
-
-.ticket-link a {
-  font-size: 0.8em;
-  color: #664c4c;
-  font-weight: bold;
-  text-decoration: none; }
-
-.ticket-link a:hover {
-  color: #000;
-  text-decoration: none; }
-
-.ticket-description {
-  font-size: 0.8em;
-  color: #664c4c;
-  padding-left: 4px; }
-
-.bubble-background {
-  background-color: #DFDBE5; }
-
-.small-bucket-item {
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  display: block; }
+  .bucket-container .bucket {
+    margin: 10px;
+    padding: 0 !important;
+    display: inline-block; }
+    .bucket-container .bucket .bucket-body {
+      padding: 0 !important;
+      background: rgba(255, 255, 255, 0.25);
+      border-radius: 3px;
+      overflow: hidden;
+      width: 100%;
+      position: relative; }
+      .bucket-container .bucket .bucket-body .bucket-content {
+        position: absolute;
+        width: 100%;
+        bottom: 0; }
+        .bucket-container .bucket .bucket-body .bucket-content .bucket-item {
+          margin: 4px;
+          overflow: hidden;
+          line-height: 14px;
+          padding: 4px;
+          background-color: #fff;
+          border-radius: 3px;
+          box-shadow: 0 1px 0 #ccc; }
+          .bucket-container .bucket .bucket-body .bucket-content .bucket-item .ticket-key {
+            display: block;
+            font-weight: bold;
+            font-size: 0.9em; }
+          .bucket-container .bucket .bucket-body .bucket-content .bucket-item .ticket-description {
+            display: block;
+            font-size: 0.8em;
+            color: #664c4c;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; }
+          .bucket-container .bucket .bucket-body .bucket-content .bucket-item .small-bucket-item {
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            display: block; }
+    .bucket-container .bucket .bucket-title {
+      text-align: center;
+      color: white; }
+    .bucket-container .bucket .drop-hover {
+      background-color: rgba(0, 0, 0, 0.24); }
 
 body {
   background-image: url("../../media/ocean-water.jpg");
-  background-size: cover; }
+  background-size: auto; }
 
-.sextant-app .logo {
+#root .sextant-app .logo {
   background-image: url("../../media/sextant.png");
   background-size: cover;
   display: inline-block;
   height: 35px;
   width: 35px; }
 
-.sextant-app h1 {
+#root .sextant-app h1 {
   display: inline-block;
   font-weight: 200; }
 
-.sextant-app .overlay {
+#root .sextant-app .overlay {
   position: fixed;
   top: 0;
   left: 0;

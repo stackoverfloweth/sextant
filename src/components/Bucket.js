@@ -1,7 +1,11 @@
 import React from 'react'
-import BucketItem from './BucketItem'
+import { bindActionCreators } from "redux"
 import { connect } from 'react-redux'
-import { assignTicketAction } from '../actions/action_jira';
+
+import BucketItem from './BucketItem'
+
+import * as EventActions from '../actions/action_event'
+import * as JiraActions from '../actions/action_jira';
 
 class Bucket extends React.Component {
 
@@ -22,7 +26,9 @@ class Bucket extends React.Component {
 
     handleDrop(event, user) {
         event.preventDefault()
+
         var data = event.dataTransfer.getData("text")
+
         this.setState({ dragHover: false })
         this.props.assignTicketAction({
             ticketId: data,
@@ -30,29 +36,32 @@ class Bucket extends React.Component {
         })
     }
 
+    renderBucketItem = () => {
+        if (this.props.usersprint && this.props.usersprint.issues) {
+            return this.props.usersprint.issues.map(ticket =>
+                <BucketItem
+                    {...this.props}
+                    onClick={() => this.props.viewEvent({}, ticket)}
+                    key={ticket.key}
+                    ticket={ticket}
+                />
+            )
+        }
+    }
+
     render() {
-        const { bucketHeightVh, usersprint, user, maxStoryPoints } = this.props
         return (
-            <div className='dev-bucket col-md-3 col-lg-2'
+            <div className='bucket col-md-3 col-lg-2'
                 onDragOver={this.handleDragOver}
                 onDragLeave={this.handleDragLeave}
-                onDrop={(ev) => this.handleDrop(ev, user)}
+                onDrop={(ev) => this.handleDrop(ev, this.props.user)}
             >
-                <div style={{ height: `${bucketHeightVh}vh` }} className={this.state.dragHover ? 'dev-bucket-body drop-hover' : 'dev-bucket-body'}>
+                <div style={{ height: `${this.props.bucketHeightVh}vh` }} className={`bucket-body ${this.state.dragHover && 'drop-hover'}`}>
                     <div className='bucket-content'>
-                        {/* <div className='wave'/> */}
-                        {usersprint &&
-                            usersprint.issues &&
-                            usersprint.issues.map(ticket =>
-                                <BucketItem
-                                    key={ticket.key}
-                                    ticket={ticket}
-                                    bucketHeightVh={bucketHeightVh}
-                                    maxStoryPoints={maxStoryPoints} />
-                            )}
+                        {this.renderBucketItem()}
                     </div>
                 </div>
-                <div className='bucket-title'>{user.displayName}</div>
+                <div className='bucket-title'>{this.props.user.displayName}</div>
             </div>
 
 
@@ -60,4 +69,9 @@ class Bucket extends React.Component {
     }
 }
 
-export default connect(null, { assignTicketAction })(Bucket)
+const mapDispatchToProps = dispatch => bindActionCreators({
+    viewEvent: EventActions.viewEvent,
+    assignTicketAction: JiraActions.assignTicketAction
+}, dispatch)
+
+export default connect(null, mapDispatchToProps)(Bucket)

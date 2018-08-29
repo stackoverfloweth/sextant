@@ -15,6 +15,7 @@ import * as JiraActions from '../actions/action_jira'
 import Navbar from '../components/Navbar'
 import Sidebar from '../components/Sidebar'
 import SettingsModal from '../containers/SettingsModal'
+import IssueModal from '../components/IssueModal'
 import BucketView from '../containers/BucketView'
 
 import '../styles/css/App.css';
@@ -60,7 +61,7 @@ class App extends React.Component {
         <Navbar addEvent={this.toggleEventToolbar}
           openSettings={this.openSettingsModal}
           toolbarEvent={this.props.toolbarEvent} />
-        <div className="container-fluid">
+        <div className="container-fluid fill-height">
           <div className="row">
             <div className="col-sm-3 d-none d-sm-block">
               <Sidebar tabs={this.getSideBarTabs()} />
@@ -79,6 +80,7 @@ class App extends React.Component {
             </div>
           </div>
           <div id="modal-wrapper">
+            {this.props.openEvent && <IssueModal onCancel={this.props.closeEvent} event={this.props.openEvent} />}
             {this.props.settings.showModal
               ? <SettingsModal />
               : null}
@@ -93,6 +95,7 @@ const mapStateToProps = state => ({
   settings: state.settings,
   team: state.team,
   toolbarEvent: state.event.toolbarEvent,
+  openEvent: state.event.openEvent,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -101,7 +104,8 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   showSettingsModal: SettingActions.showSettingsModal,
   fetchJiraSprint: JiraActions.fetchJiraSprint,
   fetchJiraBacklog: JiraActions.fetchJiraBacklog,
-  fetchJiraUsers: JiraActions.fetchJiraUsers
+  fetchJiraUsers: JiraActions.fetchJiraUsers,
+  closeEvent: EventActions.closeEvent,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

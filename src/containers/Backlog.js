@@ -4,7 +4,6 @@ import { connect } from "react-redux"
 
 import ReactLoading from 'react-loading'
 import { getPriorityColor } from '../shared/issue'
-import IssueModal from '../components/IssueModal'
 
 import * as EventActions from '../actions/action_event'
 import * as JiraActions from '../actions/action_jira'
@@ -58,7 +57,6 @@ class Backlog extends React.Component {
 
         return (
             <div className="backlog row">
-                {this.props.openEvent && <IssueModal onCancel={this.props.closeEvent} event={this.props.openEvent} />}
                 <div className="col">
                     {this.getBacklogList()}
                 </div>
@@ -71,13 +69,11 @@ const mapStateToProps = state => ({
     backlog: state.jira.backlog,
     settings: state.settings,
     toolbarEvent: state.event.toolbarEvent,
-    openEvent: state.event.openEvent,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     editJiraTicketOnToolbarEvent: EventActions.editJiraTicketOnToolbarEvent,
     viewEvent: EventActions.viewEvent,
-    closeEvent: EventActions.closeEvent,
     fetchJiraBacklog: JiraActions.fetchJiraBacklog,
 }, dispatch)
 

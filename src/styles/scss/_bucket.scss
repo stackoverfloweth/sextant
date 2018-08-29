@@ -1,70 +1,77 @@
-.dev-bucket {
-    color: white;
-    margin: 10px;
-    padding: 0 !important;
-    display: inline-block;
-    margin-top: 3%;
-}
-
-.drop-hover {
-    background-color: rgba(0, 0, 0, 0.24);
-}
-
-.dev-bucket-body {
-    padding: 0 !important;
-    border: 5px solid rgba(255, 255, 255, 0.616);
-    border-radius: 0 0 2vh 2vh;
-    border-top: none;
-    overflow: hidden;
-    width: 100%;
-    position: relative;
-}
-
-.bucket-content {
-    position: absolute;
-    width: 100%;
+.bucket-container {
+    margin-left: -15px;
+    margin-right: -15px;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    top: 90px;
     bottom: 0;
-}
+    right: 0;
+    width: 75%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
 
-.bucket-item {
-    margin-top: 2px;
-    height: 20%;
-    overflow: hidden;
-    font-size: 2vh;
-    height: 14px;
-    line-height: 14px;
-}
+    .bucket {
+        margin: 10px;
+        padding: 0 !important;
+        display: inline-block;
 
-.bucket-title {
-    text-align: center;
-}
+        .bucket-body {
+            padding: 0 !important;
+            background: rgba(255, 255, 255, 0.25);
+            border-radius: 3px;
+            overflow: hidden;
+            width: 100%;
+            position: relative;
 
-.ticket-link {
-    a {
-        font-size: 0.8em;
-        color: #664c4c;
-        font-weight: bold;
-        text-decoration: none;
+            .bucket-content {
+                position: absolute;
+                width: 100%;
+                bottom: 0;
+
+                .bucket-item {
+                    margin: 4px;
+                    overflow: hidden;
+                    line-height: 14px;
+                    padding: 4px;
+                    background-color: #fff;
+                    border-radius: 3px;
+                    box-shadow: 0 1px 0 #ccc;
+
+                    .ticket-key {
+                        display: block;
+                        font-weight: bold;
+                        font-size: 0.9em;
+                    }
+
+                    .ticket-description {
+                        display: block;
+                        font-size: 0.8em;
+                        color: #664c4c;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                    }
+
+                    .small-bucket-item {
+                        width: 100%;
+                        height: 100%;
+                        cursor: pointer;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .bucket-title {
+            text-align: center;
+            color: white;
+        }
+
+        .drop-hover {
+            background-color: rgba(0, 0, 0, 0.24);
+        }
     }
-    a:hover {
-        color: #000;
-        text-decoration: none;
-    }
-}
-
-.ticket-description {
-    font-size: 0.8em;
-    color: #664c4c;
-    padding-left: 4px;
-}
-
-.bubble-background {
-    background-color: #DFDBE5;
-}
-
-.small-bucket-item {
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    display: block;
 }
