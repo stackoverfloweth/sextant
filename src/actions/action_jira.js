@@ -27,5 +27,5 @@ export const recievedJiraSprint = payload => ({ type: JIRA_SPRINT.RESPONSE, spri
 export const fetchJiraUsers = () => ({ type: JIRA_USERS.REQUEST })
 export const recievedJiraUsers = payload => ({ type: JIRA_USERS.RESPONSE, users: payload })
 
-export const assignTicketAction = payload => ({ type: JIRA_ASSIGN_TICKET.REQUEST, payload })
+export const assignTicketAction = ({issueKey, issueData}) => ({ type: JIRA_ASSIGN_TICKET.REQUEST, issueKey, issueData })
 export const assignTicketResponse = payload => ({ type: JIRA_ASSIGN_TICKET.RESPONSE, payload })

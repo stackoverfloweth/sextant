@@ -31,8 +31,10 @@ class Bucket extends React.Component {
 
         this.setState({ dragHover: false })
         this.props.assignTicketAction({
-            ticketId: data,
-            user: user
+            issueKey: data,
+            issueData: {
+                duedate: '12/22/1991'
+            }
         })
     }
 
