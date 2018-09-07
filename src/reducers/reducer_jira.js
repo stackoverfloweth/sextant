@@ -29,7 +29,7 @@ export default function (state = {
             const { ticketId, user: { emailAddress } } = action.payload
             return {
                 ...state,
-                backlog: state.backlog.filter(x => x.key !== ticketId),
+                backlog: state.backlog ? state.backlog.filter(x => x.key !== ticketId) : null,
                 sprint: addTicketToUserSprint(ticketId, emailAddress, state)
             }
         default:
@@ -71,17 +71,43 @@ function constructTickets(issueData) {
 }
 
 function addTicketToUserSprint(ticketId, userId, state) {
-    if (state.sprint.find(x => x.assignee === userId) === undefined) {
-        return [
-            {
-                assignee: userId,
-                issues: state.backlog.filter(t => t.key === ticketId)
-            },
-            ...state.sprint
-        ]
+    if (state.backlog && state.backlog.find(t => t.key === ticketId) !== undefined) {
+        return moveFromBacklogToSprint(ticketId, userId, state)
+    } else {
+        return moveFromUserToUser(ticketId, userId, state)
     }
+}
 
-    return state.sprint.map(x => {
+function moveFromUserToUser(ticketId, userId, state) {
+    var dragSource = state.sprint.find(x => x.issues.find(i => i.key === ticketId));
+    const dragSourceAssignee = dragSource.assignee
+    const ticketToMove = dragSource.issues.find(x => x.key === ticketId)
+
+    const newSprint = state.sprint.map(x => {
+        if (x.assignee === dragSourceAssignee) {
+            return {
+                ...x,
+                issues: x.issues.filter(i => i.key !== ticketId)
+            }
+        }
+        if (x.assignee === userId) {
+            return {
+                ...x,
+                issues: [
+                    ticketToMove,
+                    ...x.issues
+                ]
+            }
+        }
+        return x
+    })
+
+    return addUserToSprintIfNecessary(state, userId, ticketId, newSprint, [ticketToMove])
+}
+
+function moveFromBacklogToSprint(ticketId, userId, state) {
+
+    const newSprint = state.sprint.map(x => {
         if (x.assignee === userId) {
             return {
                 ...x,
@@ -94,4 +120,22 @@ function addTicketToUserSprint(ticketId, userId, state) {
             return x
         }
     })
+    const userIssues = state.backlog.filter(t => t.key === ticketId)
+    return addUserToSprintIfNecessary(state, userId, ticketId, newSprint, userIssues)
+}
+
+
+function addUserToSprintIfNecessary(state, userId, ticketId, newSprint, userIssues) {
+
+    const addUserToSprint = state.sprint.find(x => x.assignee === userId) === undefined
+
+    return addUserToSprint
+        ? [
+            {
+                assignee: userId,
+                issues: userIssues
+            },
+            ...newSprint
+        ]
+        : newSprint
 }

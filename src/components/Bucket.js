@@ -14,6 +14,10 @@ class Bucket extends React.Component {
         this.state = { dragHover: false }
     }
 
+    handleItemDragStart(event, ticketId) {
+        event.dataTransfer.setData("text", ticketId)
+    }
+
     handleDragOver = (event) => {
         event.preventDefault()
         this.setState({ dragHover: true })
@@ -42,6 +46,7 @@ class Bucket extends React.Component {
                 <BucketItem
                     {...this.props}
                     onClick={() => this.props.viewEvent(ticket)}
+                    onDragStart={this.handleItemDragStart}
                     key={ticket.key}
                     ticket={ticket}
                 />
