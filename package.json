@@ -27,7 +27,8 @@
     "redux-form": "^7.4.2",
     "redux-saga": "^0.16.0",
     "sass-convert": "^0.5.2",
-    "sass-loader": "^7.0.3"
+    "sass-loader": "^7.0.3",
+    "url-parse": "^1.4.3"
   },
   "scripts": {
     "build-css": "node-sass-chokidar src/styles/scss -o src/styles/css",
