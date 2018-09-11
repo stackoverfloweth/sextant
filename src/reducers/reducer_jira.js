@@ -1,4 +1,4 @@
-import { JIRA_BACKLOG, JIRA_USERS, JIRA_SPRINT, JIRA_ASSIGN_TICKET } from '../actions/action_jira'
+import { JIRA_BACKLOG, JIRA_USERS, JIRA_SPRINT, JIRA_ASSIGN_TICKET, JIRA_UNASSIGN_TICKET } from '../actions/action_jira'
 import * as _ from 'lodash'
 import { Member } from '../entities/member'
 import { Ticket } from '../entities/ticket'
@@ -26,11 +26,16 @@ export default function (state = {
                 users: action.users.map(x => new Member(x))
             })
         case JIRA_ASSIGN_TICKET.RESPONSE:
-            const { ticketId, user: { emailAddress } } = action.payload
             return {
                 ...state,
-                backlog: state.backlog ? state.backlog.filter(x => x.key !== ticketId) : null,
-                sprint: addTicketToUserSprint(ticketId, emailAddress, state)
+                backlog: state.backlog ? state.backlog.filter(x => x.key !== action.payload.ticketId) : null,
+                sprint: addTicketToUserSprint(action.payload.ticketId, action.payload.user.emailAddress, state)
+            }
+        case JIRA_UNASSIGN_TICKET.RESPONSE:
+            return {
+                ...state,
+                backlog: moveTicketToBacklog(action.payload.ticketId, state),
+                sprint: removeTicketFromSprint(action.payload.ticketId, state)
             }
         default:
             return state
@@ -71,6 +76,10 @@ function constructTickets(issueData) {
 }
 
 function addTicketToUserSprint(ticketId, userId, state) {
+    const ticketInSprint = getTicketFromSprint(state, ticketId)
+    if (ticketInSprint && ticketInSprint.assignee === userId) {
+        return state.sprint
+    }
     if (state.backlog && state.backlog.find(t => t.key === ticketId) !== undefined) {
         return moveFromBacklogToSprint(ticketId, userId, state)
     } else {
@@ -79,7 +88,7 @@ function addTicketToUserSprint(ticketId, userId, state) {
 }
 
 function moveFromUserToUser(ticketId, userId, state) {
-    var dragSource = state.sprint.find(x => x.issues.find(i => i.key === ticketId));
+    var dragSource = getTicketFromSprint(state, ticketId)
     const dragSourceAssignee = dragSource.assignee
     const ticketToMove = dragSource.issues.find(x => x.key === ticketId)
 
@@ -124,7 +133,6 @@ function moveFromBacklogToSprint(ticketId, userId, state) {
     return addUserToSprintIfNecessary(state, userId, ticketId, newSprint, userIssues)
 }
 
-
 function addUserToSprintIfNecessary(state, userId, ticketId, newSprint, userIssues) {
 
     const addUserToSprint = state.sprint.find(x => x.assignee === userId) === undefined
@@ -138,4 +146,32 @@ function addUserToSprintIfNecessary(state, userId, ticketId, newSprint, userIssu
             ...newSprint
         ]
         : newSprint
+}
+
+function getTicketFromSprint(state, ticketId) {
+    return state.sprint.find(x => x.issues.find(i => i.key === ticketId))
+}
+
+function removeTicketFromSprint(ticketId, state) {
+    var dragSource = getTicketFromSprint(state, ticketId)
+    const dragSourceAssignee = dragSource.assignee
+
+    return state.sprint.map(sprintItem => {
+        if (sprintItem.assignee === dragSourceAssignee) {
+            return {
+                ...sprintItem,
+                issues: sprintItem.issues.filter(i => i.key !== ticketId)
+            }
+        }
+        return sprintItem
+    })
+}
+
+function moveTicketToBacklog(ticketId, state) {
+    var dragSource = getTicketFromSprint(state, ticketId)
+    const ticketToMove = dragSource.issues.find(x => x.key === ticketId)
+    return [
+        ticketToMove,
+        ...state.backlog
+    ]
 }

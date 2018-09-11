@@ -14,8 +14,13 @@ class Bucket extends React.Component {
         this.state = { dragHover: false }
     }
 
-    handleItemDragStart(event, ticketId) {
+    handleItemDragStart = (event, ticketId) => {
+        this.props.dragTicketFromBucket(true)
         event.dataTransfer.setData("text", ticketId)
+    }
+
+    handleItemDragEnd = (event, ticketId) => {
+        this.props.dragTicketFromBucket(false)
     }
 
     handleDragOver = (event) => {
@@ -47,6 +52,7 @@ class Bucket extends React.Component {
                     {...this.props}
                     onClick={() => this.props.viewEvent(ticket)}
                     onDragStart={this.handleItemDragStart}
+                    onDragEnd={this.handleItemDragEnd}
                     key={ticket.key}
                     ticket={ticket}
                 />
@@ -76,7 +82,8 @@ class Bucket extends React.Component {
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     viewEvent: EventActions.viewEvent,
-    assignTicketAction: JiraActions.assignTicketAction
+    assignTicketAction: JiraActions.assignTicketAction,
+    dragTicketFromBucket: EventActions.dragTicketFromBucket
 }, dispatch)
 
 export default connect(null, mapDispatchToProps)(Bucket)

@@ -18,6 +18,11 @@ export const JIRA_ASSIGN_TICKET = {
     RESPONSE: 'JIRA_ASSIGN_TICKET_RESPONSE',
 }
 
+export const JIRA_UNASSIGN_TICKET = {
+    REQUEST: 'JIRA_UNASSIGN_TICKET_REQUEST',
+    RESPONSE: 'JIRA_UNASSIGN_TICKET_RESPONSE',
+}
+
 export const fetchJiraBacklog = () => ({ type: JIRA_BACKLOG.REQUEST })
 export const recievedJiraBacklog = payload => ({ type: JIRA_BACKLOG.RESPONSE, backlog: payload })
 
@@ -29,3 +34,6 @@ export const recievedJiraUsers = payload => ({ type: JIRA_USERS.RESPONSE, users:
 
 export const assignTicketAction = payload => ({ type: JIRA_ASSIGN_TICKET.REQUEST, payload })
 export const assignTicketResponse = payload => ({ type: JIRA_ASSIGN_TICKET.RESPONSE, payload })
+
+export const unassignTicketAction = payload => ({ type: JIRA_UNASSIGN_TICKET.REQUEST, payload })
+export const unassignTicketResponse = payload => ({ type: JIRA_UNASSIGN_TICKET.RESPONSE, payload })

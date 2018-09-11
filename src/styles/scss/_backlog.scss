@@ -38,4 +38,11 @@
             font-weight: bold;
         }
     }
+
+    .backlog-ticket-drop-placeholder {
+        padding: 5px;
+        border: 2px dashed rgb(88, 88, 88);
+        height: 100px;
+        margin-bottom: 15px;
+    }
 }

@@ -13,6 +13,8 @@ export const EVENT_VIEW = {
     COMPLETE: 'EVENT_VIEW_COMPLETE',
 }
 
+export const DRAG_TICKET_FROM_BUCKET = 'DRAG_TICKET_FROM_BUCKET'
+
 export const beginEditingToolbarEvent = payload => ({ type: EVENT_EDIT.BEGIN, event: payload })
 export const editJiraTicketOnToolbarEvent = payload => ({ type: EVENT_EDIT.JIRA, jiraTicket: payload })
 export const editAssigneeOnToolbarEvent = payload => ({ type: EVENT_EDIT.ASSIGNEE, assignee: payload })
@@ -23,3 +25,5 @@ export const cancelEditingToolbarEvent = () => ({ type: EVENT_EDIT.CANCEL })
 export const viewEvent = (event) => ({ type: EVENT_VIEW.BEGIN, event })
 export const recievedEvent = payload => ({ type: EVENT_VIEW.RECEIVED, event: payload })
 export const closeEvent = () => ({ type: EVENT_VIEW.COMPLETE })
+
+export const dragTicketFromBucket = (dragging) => ({ type: DRAG_TICKET_FROM_BUCKET, dragging })

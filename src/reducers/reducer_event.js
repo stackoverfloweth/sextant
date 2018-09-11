@@ -1,8 +1,9 @@
-import { EVENT_EDIT, EVENT_VIEW } from '../actions/action_event'
+import { EVENT_EDIT, EVENT_VIEW, DRAG_TICKET_FROM_BUCKET } from '../actions/action_event'
 import { Ticket } from '../entities/ticket'
 
 export default function (state = {
-    toolbarEvent: null
+    toolbarEvent: null,
+    dragTicketFromBucket: false
 }, action) {
     switch (action.type) {
         case EVENT_EDIT.BEGIN:
@@ -69,6 +70,11 @@ export default function (state = {
             return {
                 ...state,
                 openEvent: null
+            }
+        case DRAG_TICKET_FROM_BUCKET:
+            return {
+                ...state,
+                dragTicketFromBucket: action.dragging
             }
 
         default:

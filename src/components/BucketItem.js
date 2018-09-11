@@ -1,6 +1,6 @@
 import React from 'react'
 
-const BucketItem = ({ ticket, bucketHeightVh, maxStoryPoints, onClick, onDragStart }) => {
+const BucketItem = ({ ticket, bucketHeightVh, maxStoryPoints, onClick, onDragStart, onDragEnd }) => {
     const minHeight = 2.4
     const itemHeight = Math.round(((bucketHeightVh - 5) * (ticket.storyPoints / maxStoryPoints))) || minHeight
     const meetsMinHeight = itemHeight > minHeight
@@ -11,7 +11,8 @@ const BucketItem = ({ ticket, bucketHeightVh, maxStoryPoints, onClick, onDragSta
             onClick={onClick}
             draggable="true"
             onDragStart={(e) => onDragStart(e, ticket.key)}
-            >
+            onDragEnd={(e) => onDragEnd(e, ticket.key)}
+        >
 
             <div className="ticket-points">{ticket.storyPoints}</div>
             <div className="ticket-key">{ticket.key}</div>

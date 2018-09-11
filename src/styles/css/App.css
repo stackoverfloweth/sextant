@@ -172,6 +172,11 @@
       margin: 3px 0; }
     .backlog .backlog-ticket span:not(.html-entity) {
       font-weight: bold; }
+  .backlog .backlog-ticket-drop-placeholder {
+    padding: 5px;
+    border: 2px dashed #585858;
+    height: 100px;
+    margin-bottom: 15px; }
 
 .event-toolbar {
   background-color: #0475ad;
