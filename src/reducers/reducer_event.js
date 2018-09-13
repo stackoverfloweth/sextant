@@ -1,9 +1,10 @@
-import { EVENT_EDIT, EVENT_VIEW, DRAG_TICKET_FROM_BUCKET } from '../actions/action_event'
+import { EVENT_EDIT, EVENT_VIEW, DRAG_TICKET_FROM_BUCKET, SHOW_DROP_AREA_EVENT } from '../actions/action_event'
 import { Ticket } from '../entities/ticket'
 
 export default function (state = {
     toolbarEvent: null,
-    dragTicketFromBucket: false
+    dragTicketFromBucket: false,
+    showDropArea: false,
 }, action) {
     switch (action.type) {
         case EVENT_EDIT.BEGIN:
@@ -75,6 +76,11 @@ export default function (state = {
             return {
                 ...state,
                 dragTicketFromBucket: action.dragging
+            }
+        case SHOW_DROP_AREA_EVENT:
+            return {
+                ...state,
+                showDropArea: action.show
             }
 
         default:

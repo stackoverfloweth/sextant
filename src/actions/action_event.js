@@ -14,6 +14,8 @@ export const EVENT_VIEW = {
 }
 
 export const DRAG_TICKET_FROM_BUCKET = 'DRAG_TICKET_FROM_BUCKET'
+export const SHOW_DROP_AREA_EVENT = 'SHOW_DROP_AREA_EVENT'
+
 
 export const beginEditingToolbarEvent = payload => ({ type: EVENT_EDIT.BEGIN, event: payload })
 export const editJiraTicketOnToolbarEvent = payload => ({ type: EVENT_EDIT.JIRA, jiraTicket: payload })
@@ -27,3 +29,5 @@ export const recievedEvent = payload => ({ type: EVENT_VIEW.RECEIVED, event: pay
 export const closeEvent = () => ({ type: EVENT_VIEW.COMPLETE })
 
 export const dragTicketFromBucket = (dragging) => ({ type: DRAG_TICKET_FROM_BUCKET, dragging })
+export const showDropAreaEvent = (show) => ({ type: SHOW_DROP_AREA_EVENT, show })
+

@@ -9,10 +9,6 @@ import * as EventActions from '../actions/action_event'
 import * as JiraActions from '../actions/action_jira'
 
 class Backlog extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = { showDropArea: false }
-    }
     handleTicketClick = (ticket) => {
         if (this.props.toolbarEvent) {
             this.props.editJiraTicketOnToolbarEvent(ticket)
@@ -26,7 +22,7 @@ class Backlog extends React.Component {
     getBacklogList = () => {
         return (
             <ul className="list-group">
-                {(this.state.showDropArea && this.props.dragingTicketFromBucket) &&
+                {(this.props.showDropArea && this.props.dragingTicketFromBucket) &&
                     <div className="backlog-ticket-drop-placeholder"
                         onDragOver={this.handleDragOver}
                         onDragLeave={this.handleDragLeave}
@@ -40,30 +36,27 @@ class Backlog extends React.Component {
     }
     startDrag(event, ticketId) {
         event.dataTransfer.setData("text", ticketId)
-        this.showDropArea(event,false)
+        this.props.showDropAreaEvent(false)
     }
     handleDragOver = (event) => {
         event.preventDefault()
     }
     handleDragLeave = (event) => {
         event.preventDefault()
-        this.showDropArea(event,false)
+        this.props.showDropAreaEvent(false)
     }
     handleDrop = (event, user) => {
         event.preventDefault()
         this.props.dragTicketFromBucket(false)
         var data = event.dataTransfer.getData("text")
 
-        this.showDropArea(event,false)
+        this.props.showDropAreaEvent(false)
         this.props.unassignTicketAction({
             ticketId: data,
             user: user
         })
     }
-    showDropArea = (event, show) => {
-        if (this.state.showDropArea === show) return
-        this.setState({ showDropArea: show })
-    }
+
     getTicketHtml(ticket) {
         return <div key={ticket.id} className="backlog-ticket"
             draggable="true"
@@ -92,9 +85,11 @@ class Backlog extends React.Component {
 
         return (
             <div className="backlog row"
-                onDragOver={(event)=>this.showDropArea(event,true)}
-                //onDragLeave={() => this.showDropArea(false)}
-                onMouseLeave={()=>console.log('onMouseLeave')}
+                onDragOver={() => this.props.showDropAreaEvent(true)}
+                // onDragLeave={(event) => this.showDropArea(event,false)}
+                // onMouseLeave={() => this.showDropArea(false)}
+                // onMouseOut={() => this.showDropArea(false)}
+                // onMouseOutCapture={() => this.showDropArea(false)}
             >
                 <div className="col">
                     {this.getBacklogList()}
@@ -108,6 +103,7 @@ const mapStateToProps = state => ({
     backlog: state.jira.backlog,
     toolbarEvent: state.event.toolbarEvent,
     dragingTicketFromBucket: state.event.dragTicketFromBucket,
+    showDropArea: state.event.showDropArea,
 })
 
 const mapDispatchToProps = dispatch => bindActionCreators({
@@ -116,6 +112,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
     fetchJiraBacklog: JiraActions.fetchJiraBacklog,
     unassignTicketAction: JiraActions.unassignTicketAction,
     dragTicketFromBucket: EventActions.dragTicketFromBucket,
+    showDropAreaEvent: EventActions.showDropAreaEvent,
 }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(Backlog)
