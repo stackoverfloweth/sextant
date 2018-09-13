@@ -24,8 +24,7 @@ class Backlog extends React.Component {
             <ul className="list-group">
                 {(this.props.showDropArea && this.props.dragingTicketFromBucket) &&
                     <div className="backlog-ticket-drop-placeholder"
-                        onDragOver={this.handleDragOver}
-                        onDragLeave={this.handleDragLeave}
+                    onDragOver={(event)=>{event.preventDefault()}}
                         onDrop={(ev) => this.handleDrop(ev, this.props.user)}
                     >
                     </div>
@@ -38,13 +37,7 @@ class Backlog extends React.Component {
         event.dataTransfer.setData("text", ticketId)
         this.props.showDropAreaEvent(false)
     }
-    handleDragOver = (event) => {
-        event.preventDefault()
-    }
-    handleDragLeave = (event) => {
-        event.preventDefault()
-        this.props.showDropAreaEvent(false)
-    }
+
     handleDrop = (event, user) => {
         event.preventDefault()
         this.props.dragTicketFromBucket(false)
@@ -85,11 +78,7 @@ class Backlog extends React.Component {
 
         return (
             <div className="backlog row"
-                onDragOver={() => this.props.showDropAreaEvent(true)}
-                // onDragLeave={(event) => this.showDropArea(event,false)}
-                // onMouseLeave={() => this.showDropArea(false)}
-                // onMouseOut={() => this.showDropArea(false)}
-                // onMouseOutCapture={() => this.showDropArea(false)}
+                onDragOver={() => !this.props.showDropArea && this.props.showDropAreaEvent(true)}
             >
                 <div className="col">
                     {this.getBacklogList()}

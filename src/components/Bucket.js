@@ -76,8 +76,6 @@ class Bucket extends React.Component {
                 </div>
                 <div className='bucket-title'>{this.props.user.displayName}</div>
             </div>
-
-
         )
     }
 }
